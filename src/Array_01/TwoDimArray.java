@@ -55,7 +55,7 @@ public class TwoDimArray {
         //(0,0) (0,1)
         //(1,0) (1,1) (1,2)
 
-        //列加總
+        //行加總
         System.out.println(Arrays.toString(columnSum));
         for (int i = 0; i < columnSum.length; i++) {
             System.out.println("第" + i + "行的和="+ columnSum[i]);
