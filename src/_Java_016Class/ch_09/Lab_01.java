@@ -36,16 +36,16 @@ public class Lab_01 {
 //		}
 		
 		System.out.println("1---------------");
-		for (Object object : col) {
-			System.out.println(object);
-		}
+//		for (Object object : col) {
+//			System.out.println(object);
+//		}
 		
 		System.out.println("2---------------");
 		//  list.forEach(e -> System.out.println(e));
-		col.forEach(e -> System.out.println(e));
+//		col.forEach(e -> System.out.println(e));
 		
 		System.out.println("3---------------");
-		col.forEach(System.out::println);
+//		col.forEach(System.out::println);
 		System.out.println("---------------");
 		//(3)移除不是java.lang.Number家族的物件 
 		//way1
@@ -68,21 +68,22 @@ public class Lab_01 {
 		colNotNum.forEach(System.out::println);
 //		col.removeAll(colNotNum);
 		
-		System.out.println("fori---------------");
-		for (int i = 0; i < col.size(); i++) {		//漏Snoopy？
-			if (!(col.get(i) instanceof Number)) {
-				System.out.println(col.get(i));
+		System.out.println("fori---------------");  //此方式有問題 index往前遞補。也可以由col.size()-1倒數到0. (這個方法會快一點）
+//		for (int i = 0; i < col.size(); i++) {		//漏Snoopy？
+//			if (!(col.get(i) instanceof Number)) {
+//				System.out.println(col.get(i));
 //				col.remove(i);
-			}
-		}
+//				i--;								//補上
+//			}
+//		}
 		
-		System.out.println("for5---------------");
-		for (Object object : col) {
-			if (!(object instanceof Number)) {
-				System.out.println(object);
+//		System.out.println("for5---------------");
+//		for (Object object : col) {
+//			if (!(object instanceof Number)) {
+//				System.out.println(object);
 //				col.remove(object); // java.util.ConcurrentModificationException
-			}
-		}
+//			}
+//		}
 		
 //		col.forEach(e -> {
 //			if ((e instanceof Number)) {
@@ -90,6 +91,10 @@ public class Lab_01 {
 ////				col.remove(e); // java.util.ConcurrentModificationException
 //			}
 //		});
+		
+		//->
+		col.removeIf(x -> !(x instanceof Number));
+		
 		System.out.println("移除notNumber---------------");
 		col.forEach(System.out::println);
 

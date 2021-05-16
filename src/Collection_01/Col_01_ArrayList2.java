@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class GenClazz2 {
+public class Col_01_ArrayList2 {
 	public static void main(String[] args) {
 		Collection<Cloth> cart1 = new ArrayList<>(); 
 		
