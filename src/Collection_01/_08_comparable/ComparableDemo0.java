@@ -14,6 +14,7 @@ public class ComparableDemo0 {
 	    List<Student> ts = new ArrayList<Student>();
 	    ts.add(s1);ts.add(s2);ts.add(s3);
 	    ts.add(s4);ts.add(s5);ts.add(s6);
+	    
 	    Collections.sort(ts);
 
 		System.out.println();
