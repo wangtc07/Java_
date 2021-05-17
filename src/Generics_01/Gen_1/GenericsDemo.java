@@ -26,8 +26,6 @@ public class GenericsDemo {
 			//`2 >> 不用強制類型轉換
 			String s = it.next();
 			System.out.println(s);
-			
 		}
 	}
-
 }

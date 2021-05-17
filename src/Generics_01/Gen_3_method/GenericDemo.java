@@ -14,5 +14,9 @@ public class GenericDemo {
 		genMehtod.show("Wang T");
 		genMehtod.show(100.5);
 		genMehtod.show(true);
+		genMehtod.<Integer>show(50); //指定Integer類型
+		
+//		genMehtod.showNum("Wang T"); //類型泛型中的方法（t）不適用於參數（字符串）
+		genMehtod.showNum(100);
 	}
 }

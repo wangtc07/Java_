@@ -27,6 +27,10 @@ public class Generic {
 	<T>void show (T t) {
 		System.out.println(t);
 	}
+	
+	<T extends Number> void showNum(T t) {
+		System.out.println(t);
+	}
 }
 
 

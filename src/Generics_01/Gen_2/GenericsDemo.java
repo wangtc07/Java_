@@ -8,6 +8,7 @@ public class GenericsDemo {
 		
 		System.out.println("------------");
 		
+		// 泛型類別 
 		Generic<String> gen = new Generic<String>();
 		gen.setT("Wang T");
 		System.out.println(gen.getT());
