@@ -32,10 +32,15 @@ public class Student {
 	public void setMath(int math) {
 		this.math = math;
 	}
+	public int getsum() {
+		return chinese + math;
+	}
+	
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "name= " + name + ", chinese= " + chinese + ", math= " + math;
+		return "name= " + name + ", chinese= " + chinese + ", math= " + math + ", total= " + (chinese+math);
 	}
 	
 	

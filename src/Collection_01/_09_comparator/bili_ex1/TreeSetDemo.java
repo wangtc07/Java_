@@ -9,10 +9,11 @@ public class TreeSetDemo {
 
 			@Override
 			public int compare(Student o1, Student o2) {
-				int num1 = o1.getChinese() - o2.getChinese() ;
+				int num0 = o1.getsum() - o2.getsum();
+				int num1 = num0 == 0 ? o1.getChinese() - o2.getChinese() : num0 ;
 				int num2 = num1 == 0 ? o1.getMath() - o2.getMath() : num1;
 				int num3 = num2 == 0 ? o1.getName().compareTo(o2.getName()) : num2;
-				return num3;
+				return -num3;
 			}
 		});
 		
@@ -20,11 +21,13 @@ public class TreeSetDemo {
 		Student s1 = new Student("Wang", 5, 100);
 		Student s2 = new Student("Kaki", 17, 70);
 		Student s3 = new Student("Mayu", 22, 90);
+		
 		Student s4 = new Student("seira", 17, 80);
+		Student s5 = new Student("miyu", 17, 80);
 
 		
 		tSet.add(s1); tSet.add(s2); tSet.add(s3);
-		tSet.add(s4);
+		tSet.add(s4); tSet.add(s5);
 		
 //		System.out.println(tSet);
 		for (Student student : tSet) {
