@@ -1,0 +1,4 @@
+aa001,wang,5,taiwan
+aa002,mayu,21,japain
+aa003,kakki,19,japain
+aa004,sera,20,japain

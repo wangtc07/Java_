@@ -1,0 +1,34 @@
+第一天Modern Web大會由JavaScript之父同時也是Mozilla基金會共同創辦人Brendan 
+Eich（音：艾可，德國姓）首先拉開序幕，主講第一場主題演講Javascript at 20 Years，
+他說他在1995年僅花了10天就開發出Javascript，在會採訪Brendan Eich還表示，
+JavaScript之所以用了Java這四個字母完全是行銷上考量，他想藉由Java的名氣使更多人注意
+到JavaScript。Brendan Eich想讓JavaScript乍看之下很像是Java，但是其實與Java
+的完全不同。
+
+JavaScript與Java其中一個很大的差異在於型別，Java是靜態型別，也就是說在撰寫Java
+程式碼時，開發者需要先定義變數的型別，而JavaScript卻不需要，這使得JavaScript的
+程式在開發上，更為彈性以及容易，不過卻也是JavaScript的致命傷，動態型別使得
+JavaScript的執行效能受到影響。因此Brendan Eich提到，現在Mozilla推的Asm.js，
+是編譯過的JavaScript子集，這個架構限制原本JavaScript拖累效能的語法，而正是為了
+解決這個問題，讓JavaScript執行的效率達到跟Bytecode一樣。
+
+Brendan Eich在演講中，展示了兩款由支援Asm.js的遊戲引擎Unity與Unreal，所打造的
+3D遊戲，過去JavaScript的執行效能限制了其在網頁上的應用，但是因為Asm.js，因此連
+遊戲這種運算密集且注重效能的應用，也能在網頁平臺上執行。Brendan Eich提到，他設計
+JavaScript除了提供一個非重度開發者也能使用的程式語言外，也是提供開發者由Java這類
+靜態型別轉至動態型別開發語言的一種選擇，但是現在的Asm.js，又將JavaScript帶回到了
+靜態型別。
+
+Brendan Eich用太陽系的結構來形容JavaScript，其中最核心部分是標準ES3（
+ECMAScript 3），此標準定義了JavaScript的一些核心功能，並且能向下支援一些較舊的
+瀏覽器，他還特別展示了以前的JavaScript網頁，依然能夠最新的Firefox瀏覽器上執行，
+Brendan Eich驕傲地表示，JavaScript相容性相當好。而ES6則是JavaScript現在
+2015年標準，與之前版本有較大的語法以及概念變動，他也提到，一年後將會採用ES7的標準，
+ES8的標準預計將在2017年完成。
+
+而網路論壇上有一些輿論認為，微軟最近積極推行相容於JavaScript的開源程式語言
+TypeScript，背後用意則是想強勢的影響ES7的標準制定，Brendan Eich表示，
+他並不這麼認為，因為ES的標準無法被單一組織操控的，而微軟找來C Sharp之父操刀
+TypeScript，他覺得微軟真的想參與其中，且更多人貢獻心力對這個生態系試多多益善的。
+現在的微軟明顯跟過去不一樣了，Brendan Eich認為，最近微軟在開源動作頻頻是玩真的，
+因為開源是現在的大環境趨勢，而他也覺得這跟微軟組織內世代交替，文化改變有很大的關係。

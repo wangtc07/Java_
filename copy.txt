@@ -1,0 +1,174 @@
+A
+Hello
+world
+流是用來讀寫數據的，java 有一個類別叫 File，它封裝的是文件的文件名，只是記憶體裡面的一個物件，真正的文件是在硬碟上的一塊空間，在這個文件裡面存放著各種各樣的數據，我們想讀文件裡面的數據怎麼辦呢？是通過一個流的方式來讀，我們想從程序讀數據，對於計算機來說，無論讀什麼類型的數據都是以 010101101010 這樣的形式讀取的。怎麼把文件裡面的數據讀出來呢？您可以把文件想像成一個小桶，文件就是一個桶，文件裡面的數據就相當於是這個桶裡面的水，那麼我們怎麼從這個桶裡面取水呢？也就是怎麼從這個文件讀取數據呢？
+
+常見的取水辦法是我們用一根管道插到桶上面，然後在管道的另一邊打開水龍頭，桶裡面的水就開始嘩啦嘩啦地從水龍頭里流出來了，桶裡面的水是通過這根管道流出來的，因此這根管道就叫流，Java 裡面的流式輸入/輸出跟水流的原理一模一樣，當您要從文件讀取數據的時候，一根管道插到文件裡面去，然後文件裡面的數據就順著管道流出來，這時你在管道的另一頭就可以讀取到從文件流出來的各種各樣的數據了。當您要往文件寫入數據時，也是通過一根管道，讓要寫入的數據通過這根管道嘩啦嘩啦地流進文件裡面去。除了從文件去取數據以外，還可以通過網絡，比如用一根管道把我和你的機子連接起來，我說一句話，通過這個管道流進你的機子裡面，你馬上就可以看得到，而你說一句話，通過這根管道流到我的機子裡面，我也馬上就可以看到。有的時候，一根管道不夠用，比方說這根管道流過來的水有一些雜質，我們就可以在這個根管道的外面再包一層管道，把雜質給過濾掉。從程序的角度來講，從計算機讀取到的原始數據肯定都是 010101 這種形式的，一個字節一個字節地往外讀，當你這樣讀的時候你覺得這樣的方法不合適，沒關係，你再在這根管道的外面再包一層比較強大的管道，這個管道可以把 010101 幫你轉換成字符串。這樣你使用程序讀取數據時讀到的就不再是 010101 這種形式的數據了，而是一些可以看得懂的字符串了。
+
+
+
+一、輸入輸出流分類
+java.io 套件包中定義了多個流型態(類別或抽象類別)來實現輸入/輸出功能。可以從不同的角度對其進行分類：
+
+按數據流的方向不同可以分為輸入流和輸出流。
+按處理數據單位不同可以分為字節流(byte stream, 位元組流)和字符流(character stream, 字符串流)。
+按照功能不同可以分為節點流和處理流。
+字節流(byte stream)：最原始的一個流，讀出來的數據就是 010101 這種最底層的數據表示形式，只不過它是按照字節(byte)來讀的，一個字節(byte)是8個位元(bit)，讀的時候不是一個位元一個位元來讀，而是一個字節一個字節來讀。
+
+字符流(character stream)：字符流是一個字符一個字符地往外讀取數據。一個字符是2個字節。
+
+Java 所提供的所有流類型位於套件包 java.io 內都分別繼承自以下四種流類別。
+以 File(文件) 這個類型作為講解的典型代表：
+
+建立物件時，要處理 FileNotFoundException 例外。
+寫出檔案時，要處理 IOException 例外。
+記得要關檔。
+
+FileOutputStream 範例：
+
+Copy
+1
+import java.util.*;
+2
+import java.io.*;
+3
+class WriteFile1 {
+4
+    public static void main(String[] arg){
+5
+        FileOutputStream fos = null;
+6
+        String data = "";
+7
+        Scanner sc = new Scanner(System.in);
+8
+        System.out.println("請輸入欲存檔的內容:");
+9
+        data = sc.nextLine();
+10
+        data += "\n";
+11
+        try{
+12
+            fos=new FileOutputStream("a1.txt");
+13
+            if(data.length()!=0){
+14
+                fos.write(data.getBytes());
+15
+                System.out.println("內容已寫入a1.txt");
+16
+            }else{
+17
+                System.out.println("沒有內容無法寫入");
+18
+            }
+19
+        }catch(FileNotFoundException e1){
+20
+            System.out.println("系統錯誤:"+e1.getMessage());
+21
+            System.out.println("錯誤:檔案不存在");
+22
+        }catch(IOException e2){
+23
+            System.out.println("錯誤:寫檔失敗");
+24
+        }finally{
+25
+            try{
+26
+                fos.close();
+27
+            }catch(IOException e3){
+28
+                System.out.println("錯誤:關檔失敗");
+29
+            }
+30
+        }
+31
+    }
+32
+}
+33
+​
+	
+Try-with-resources：JDK 1.7 後新增的語法，只有實作 java.lang.AutoCloseable 的任何類別（包括實作 java.io.Closeable 的所有類別）才可以使用新語法。使用新語法的好處有 3 點：
+
+(i) 使用後，資源自動關閉，無須開發人員撰寫程式碼關閉。
+(ii) 在 try-with-resources 中，關閉資源時拋出的異常將被抑制。
+(iii) 使您的代碼看起來更短，更易讀。
+
+JDK 1.7 之前：
+
+try{
+  //open resources like File, Database connection, Sockets etc
+} catch (FileNotFoundException e) {
+  // exception handling like FileNotFoundException, IOException etc
+}finally{
+  // close resources
+}
+JDK 1.7 之後：
+
+try(// open resources here){
+  // use resources
+} catch (FileNotFoundException e) {
+  // exception handling
+}
+// resources are closed as soon as try-catch block is executed.
+將上述程式碼改成使用 try-with-resources：
+
+FileOutputStream 的建構子如果第二個參數打上 true，表示寫入時，舊資料會保留，新資料而增加在後面。
+
+Copy
+1
+import java.util.*;
+2
+import java.io.*;
+3
+​
+4
+class WriteFile2 {
+5
+    public static void main(String[] arg){
+6
+        String data = "";
+7
+        Scanner sc = new Scanner(System.in);
+8
+        System.out.println("請輸入欲存檔的內容:");
+9
+        data = sc.nextLine();
+10
+        data += "\n";
+11
+        try(FileOutputStream fos = new FileOutputStream("a1.txt", true)){
+12
+            if(data.length()!=0){
+13
+                fos.write(data.getBytes());
+14
+                System.out.println("內容已寫入a1.txt");
+15
+            }else{
+16
+                System.out.println("沒有內容無法寫入");
+17
+            }
+18
+        }catch(FileNotFoundException e1){
+19
+            System.out.println("系統錯誤:" + e1.getMessage());
+20
+            System.out.println("錯誤:檔案不存在");
+21
+        }catch(IOException e2){
+22
+            System.out.println("錯誤:寫檔失敗");
+23
+        }
+24
+    }
+25
+
