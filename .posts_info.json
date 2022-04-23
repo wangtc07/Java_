@@ -1,0 +1,790 @@
+{
+  "links_backward_paths" : {
+    "src\/_data_sturcure\/_Queue.md" : [
+      "src\/_data_sturcure\/_data_sturcure.md"
+    ],
+    "_Queue" : [
+      "src\/_data_sturcure\/_data_sturcure.md"
+    ]
+  },
+  "todo_list" : {
+
+  },
+  "documents_meta_info" : {
+    "ArrayListToTxt.txt" : {
+
+    },
+    "OOSA.TXT" : {
+
+    },
+    "copy.txt" : {
+
+    },
+    "myCharStream\/Source\/readme.txt" : {
+
+    },
+    "Source2\/readme.txt" : {
+
+    },
+    "array.txt" : {
+
+    },
+    "BufferWriter.txt" : {
+
+    },
+    "readme.txt" : {
+
+    },
+    "copy_01.txt" : {
+
+    },
+    "fos.txt" : {
+
+    },
+    "src\/_data_sturcure\/_data_sturcure.md" : {
+
+    },
+    "pw.txt" : {
+
+    },
+    "Source2\/Source 2\/readme.txt" : {
+
+    },
+    "bin\/File_01\/a.txt" : {
+
+    },
+    "src\/_data_sturcure\/_Queue.md" : {
+
+    },
+    "Source2\/Source 2\/Source\/readme.txt" : {
+
+    },
+    "Target.txt" : {
+
+    },
+    "Source\/readme.txt" : {
+
+    },
+    "Source.txt" : {
+
+    },
+    "src\/File_01\/a.txt" : {
+
+    },
+    "number.txt" : {
+
+    },
+    "ArrayListToTxt_Sort.txt" : {
+
+    }
+  },
+  "wiki_data_version" : "0.1",
+  "name_path_info" : {
+    "a" : "src\/File_01\/a.txt",
+    "arraylisttotxt" : "ArrayListToTxt.txt",
+    "pw" : "pw.txt",
+    "source" : "Source.txt",
+    "_queue" : "src\/_data_sturcure\/_Queue.md",
+    "number" : "number.txt",
+    "array" : "array.txt",
+    "oosa" : "OOSA.TXT",
+    "copy_01" : "copy_01.txt",
+    "fos" : "fos.txt",
+    "_data_sturcure" : "src\/_data_sturcure\/_data_sturcure.md",
+    "bufferwriter" : "BufferWriter.txt",
+    "arraylisttotxt_sort" : "ArrayListToTxt_Sort.txt",
+    "copy" : "copy.txt",
+    "target" : "Target.txt",
+    "readme" : "readme.txt"
+  },
+  "filename_path_info" : {
+    "array" : "array.txt",
+    "bufferwriter" : "BufferWriter.txt",
+    "_data_sturcure" : "src\/_data_sturcure\/_data_sturcure.md",
+    "arraylisttotxt_sort" : "ArrayListToTxt_Sort.txt",
+    "copy_01" : "copy_01.txt",
+    "fos" : "fos.txt",
+    "readme" : "readme.txt",
+    "oosa" : "OOSA.TXT",
+    "pw" : "pw.txt",
+    "arraylisttotxt" : "ArrayListToTxt.txt",
+    "a" : "src\/File_01\/a.txt",
+    "source" : "Source.txt",
+    "number" : "number.txt",
+    "_queue" : "src\/_data_sturcure\/_Queue.md",
+    "copy" : "copy.txt",
+    "target" : "Target.txt"
+  },
+  "documents_info" : {
+    "Source2\/Source 2\/readme.txt" : {
+      "images" : [
+
+      ],
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ]
+    },
+    "number.txt" : {
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "OOSA.TXT" : {
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "Source2\/readme.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "Source2\/Source 2\/Source\/readme.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "bin\/File_01\/a.txt" : {
+      "links" : [
+
+      ],
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ]
+    },
+    "Source.txt" : {
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "ArrayListToTxt_Sort.txt" : {
+      "links" : [
+
+      ],
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ]
+    },
+    "BufferWriter.txt" : {
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "readme.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "src\/_data_sturcure\/_data_sturcure.md" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "src\/File_01\/a.txt" : {
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "copy.txt" : {
+      "images" : [
+
+      ],
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ]
+    },
+    "array.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "pw.txt" : {
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "src\/_data_sturcure\/_Queue.md" : {
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "copy_01.txt" : {
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "Source\/readme.txt" : {
+      "images" : [
+
+      ],
+      "links" : [
+
+      ],
+      "attachments" : [
+
+      ]
+    },
+    "myCharStream\/Source\/readme.txt" : {
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ],
+      "images" : [
+
+      ]
+    },
+    "fos.txt" : {
+      "attachments" : [
+
+      ],
+      "images" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "ArrayListToTxt.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    },
+    "Target.txt" : {
+      "images" : [
+
+      ],
+      "attachments" : [
+
+      ],
+      "links" : [
+
+      ]
+    }
+  },
+  "files_mtime_info" : {
+    "src\/File_01\/a.txt" : 1650735872,
+    "pw.txt" : 1650735872,
+    "src\/_data_sturcure\/_Queue.md" : 1650739109,
+    "OOSA.TXT" : 1650735871,
+    "copy_01.txt" : 1650735872,
+    "fos.txt" : 1650735872,
+    "array.txt" : 1650735872,
+    "myCharStream\/Source\/readme.txt" : 1650735872,
+    "Source\/readme.txt" : 1650735871,
+    "bin\/File_01\/a.txt" : 1650736070,
+    "Source2\/Source 2\/Source\/readme.txt" : 1650735872,
+    "Source.txt" : 1650735871,
+    "ArrayListToTxt.txt" : 1650735871,
+    "ArrayListToTxt_Sort.txt" : 1650735871,
+    "copy.txt" : 1650735872,
+    "BufferWriter.txt" : 1650735871,
+    "readme.txt" : 1650735872,
+    "src\/_data_sturcure\/_data_sturcure.md" : 1650737532,
+    "Source2\/Source 2\/readme.txt" : 1650735872,
+    "Target.txt" : 1650735872,
+    "Source2\/readme.txt" : 1650735872,
+    "number.txt" : 1650735872
+  },
+  "toc_hash_info" : {
+
+  },
+  "path_name_info" : {
+    "src\/File_01\/a.txt" : "a",
+    "fos.txt" : "fos",
+    "copy.txt" : "copy",
+    "src\/_data_sturcure\/_data_sturcure.md" : "_data_sturcure",
+    "ArrayListToTxt.txt" : "ArrayListToTxt",
+    "copy_01.txt" : "copy_01",
+    "BufferWriter.txt" : "BufferWriter",
+    "readme.txt" : "readme",
+    "ArrayListToTxt_Sort.txt" : "ArrayListToTxt_Sort",
+    "Source\/readme.txt" : "readme",
+    "number.txt" : "number",
+    "OOSA.TXT" : "OOSA",
+    "pw.txt" : "pw",
+    "Source2\/Source 2\/Source\/readme.txt" : "readme",
+    "Target.txt" : "Target",
+    "Source2\/Source 2\/readme.txt" : "readme",
+    "bin\/File_01\/a.txt" : "a",
+    "Source.txt" : "Source",
+    "array.txt" : "array",
+    "Source2\/readme.txt" : "readme",
+    "src\/_data_sturcure\/_Queue.md" : "_Queue",
+    "myCharStream\/Source\/readme.txt" : "readme"
+  },
+  "relative_paths" : [
+    "myCharStream\/Source\/readme.txt",
+    "copy_01.txt",
+    "array.txt",
+    "Source2\/Source 2\/Source\/readme.txt",
+    "Source2\/Source 2\/readme.txt",
+    "Source2\/readme.txt",
+    "bin\/File_01\/a.txt",
+    "Target.txt",
+    "fos.txt",
+    "Source\/readme.txt",
+    "number.txt",
+    "ArrayListToTxt.txt",
+    "Source.txt",
+    "ArrayListToTxt_Sort.txt",
+    "OOSA.TXT",
+    "copy.txt",
+    "BufferWriter.txt",
+    "readme.txt",
+    "pw.txt",
+    "src\/_data_sturcure\/_data_sturcure.md",
+    "src\/_data_sturcure\/_Queue.md",
+    "src\/File_01\/a.txt"
+  ],
+  "relative_folders" : [
+    "myCharStream",
+    "myCharStream\/Source",
+    "Source2",
+    "Source2\/Source 2",
+    "Source2\/Source 2\/Source",
+    "bin",
+    "bin\/Object_01",
+    "bin\/Object_01\/Object_01_Cat",
+    "bin\/Object_01\/Object_02_Account",
+    "bin\/_Java_016Class",
+    "bin\/_Java_016Class\/ch_06",
+    "bin\/_Java_016Class\/ch_06\/_8",
+    "bin\/_Java_016Class\/ch_08",
+    "bin\/_Java_016Class\/ch_09",
+    "bin\/_Java_016Class\/ch_07",
+    "bin\/_Java_016Class\/ch_04_0415",
+    "bin\/_Java_016Class\/Day_0504",
+    "bin\/_Java_016Class\/ch_05",
+    "bin\/_Java_016Class\/ch_03",
+    "bin\/_Java_016Class\/ch_04_homework",
+    "bin\/_Java_016Class\/ch_9_Lab4",
+    "bin\/_Thread",
+    "bin\/HelloWord",
+    "bin\/_0T",
+    "bin\/IO",
+    "bin\/IO\/ArrayListToTxt",
+    "bin\/IO\/Print",
+    "bin\/IO\/CopyFolder",
+    "bin\/IO\/ObjectIO",
+    "bin\/Interface_01",
+    "bin\/Interface_01\/Int_03",
+    "bin\/Interface_01\/Int_04",
+    "bin\/Interface_01\/Int_02",
+    "bin\/Interface_01\/Int_0503",
+    "bin\/Interface_01\/Int_01",
+    "bin\/Polymorphism",
+    "bin\/Polymorphism\/Parameters_Retern",
+    "bin\/Polymorphism\/Polymorphism_02",
+    "bin\/Polymorphism\/Polymorphism_01",
+    "bin\/Polymorphism\/Polymorphism_03_ex",
+    "bin\/Wrapper_Class",
+    "bin\/Exceptions_01",
+    "bin\/InnerClass",
+    "bin\/InnerClass\/Lambda_",
+    "bin\/InnerClass\/inner_2",
+    "bin\/InnerClass\/inner_1",
+    "bin\/Collection_01",
+    "bin\/Collection_01\/_08_comparable",
+    "bin\/Collection_01\/_08_comparable\/bili_comparable",
+    "bin\/Collection_01\/_09_comparator",
+    "bin\/Collection_01\/_09_comparator\/v1",
+    "bin\/Collection_01\/_09_comparator\/bili_ex1",
+    "bin\/Collection_01\/_09_comparator\/v2",
+    "bin\/Collection_01\/_09_comparator\/v2\/lambdaExpression",
+    "bin\/Collection_01\/_09_comparator\/v3",
+    "bin\/Collection_01\/_09_comparator\/bili_ex2_random",
+    "bin\/Collection_01\/_09_comparator\/bili_comparator",
+    "bin\/Collection_01\/Col_List",
+    "bin\/Collection_01\/Col_List\/LinkedHashSetDemo",
+    "bin\/Collection_01\/Col_List\/LinkedHashSetDemo\/copy",
+    "bin\/Collection_01\/Col_List\/HashSetDemo",
+    "bin\/Collection_01\/Col_List\/TreeSet",
+    "bin\/Collection_01\/Col_List\/TreeSet\/TreeSet_ex",
+    "bin\/Collection_01\/Col_StudentMgr",
+    "bin\/Statements",
+    "bin\/File_01",
+    "bin\/Abstract_class",
+    "bin\/Abstract_class\/Static_0503",
+    "bin\/Abstract_class\/Abs_01",
+    "bin\/Abstract_class\/Abs_99_T",
+    "bin\/Abstract_class\/Abs_03",
+    "bin\/Abstract_class\/Abs_04",
+    "bin\/Abstract_class\/Abs_02",
+    "bin\/Generics_01",
+    "bin\/Generics_01\/Gen_3_method",
+    "bin\/Generics_01\/Gen_4_impl",
+    "bin\/Generics_01\/Gen_1",
+    "bin\/Generics_01\/Gen_6",
+    "bin\/Generics_01\/Gen_5_WildcardType",
+    "bin\/Generics_01\/Gen_class_1",
+    "bin\/Generics_01\/Gen_2",
+    "bin\/Array_01",
+    "bin\/Scanner",
+    "bin\/ch11",
+    "bin\/ch11\/lab03",
+    "bin\/ch11\/lab03\/solution",
+    "bin\/ch11\/lab04",
+    "bin\/ch11\/lab04\/solution",
+    "bin\/ch11\/lab02",
+    "bin\/ch11\/lab02\/solution",
+    "bin\/ch11\/lab01",
+    "bin\/ch11\/lab01\/solution",
+    "bin\/Enum_01",
+    "Source",
+    "src",
+    "src\/Object_01",
+    "src\/Object_01\/Object_01_Cat",
+    "src\/Object_01\/Object_02_Account",
+    "src\/_Java_016Class",
+    "src\/_Java_016Class\/ch_06",
+    "src\/_Java_016Class\/ch_06\/_8",
+    "src\/_Java_016Class\/ch_08",
+    "src\/_Java_016Class\/ch_09",
+    "src\/_Java_016Class\/ch_07",
+    "src\/_Java_016Class\/ch_04_0415",
+    "src\/_Java_016Class\/Day_0504",
+    "src\/_Java_016Class\/ch_05",
+    "src\/_Java_016Class\/ch_03",
+    "src\/_Java_016Class\/ch_04_homework",
+    "src\/_Java_016Class\/ch_9_Lab4",
+    "src\/_Thread",
+    "src\/HelloWord",
+    "src\/_data_sturcure",
+    "src\/IO",
+    "src\/IO\/ArrayListToTxt",
+    "src\/IO\/Print",
+    "src\/IO\/CopyFolder",
+    "src\/IO\/ObjectIO",
+    "src\/Interface_01",
+    "src\/Interface_01\/Int_03",
+    "src\/Interface_01\/Int_04",
+    "src\/Interface_01\/Int_02",
+    "src\/Interface_01\/Int_0503",
+    "src\/Interface_01\/Int_01",
+    "src\/Polymorphism",
+    "src\/Polymorphism\/Parameters_Retern",
+    "src\/Polymorphism\/Polymorphism_02",
+    "src\/Polymorphism\/Polymorphism_01",
+    "src\/Polymorphism\/Polymorphism_03_ex",
+    "src\/Wrapper_Class",
+    "src\/Exceptions_01",
+    "src\/InnerClass",
+    "src\/InnerClass\/Lambda_",
+    "src\/InnerClass\/inner_2",
+    "src\/InnerClass\/inner_1",
+    "src\/Collection_01",
+    "src\/Collection_01\/_08_comparable",
+    "src\/Collection_01\/_08_comparable\/bili_comparable",
+    "src\/Collection_01\/_09_comparator",
+    "src\/Collection_01\/_09_comparator\/v1",
+    "src\/Collection_01\/_09_comparator\/bili_ex1",
+    "src\/Collection_01\/_09_comparator\/v2",
+    "src\/Collection_01\/_09_comparator\/v2\/lambdaExpression",
+    "src\/Collection_01\/_09_comparator\/v3",
+    "src\/Collection_01\/_09_comparator\/bili_ex2_random",
+    "src\/Collection_01\/_09_comparator\/bili_comparator",
+    "src\/Collection_01\/Col_List",
+    "src\/Collection_01\/Col_List\/LinkedHashSetDemo",
+    "src\/Collection_01\/Col_List\/LinkedHashSetDemo\/copy",
+    "src\/Collection_01\/Col_List\/HashSetDemo",
+    "src\/Collection_01\/Col_List\/TreeSet",
+    "src\/Collection_01\/Col_List\/TreeSet\/TreeSet_ex",
+    "src\/Collection_01\/Col_StudentMgr",
+    "src\/Statements",
+    "src\/File_01",
+    "src\/Abstract_class",
+    "src\/Abstract_class\/Static_0503",
+    "src\/Abstract_class\/Abs_01",
+    "src\/Abstract_class\/Abs_99_T",
+    "src\/Abstract_class\/Abs_03",
+    "src\/Abstract_class\/Abs_04",
+    "src\/Abstract_class\/Abs_02",
+    "src\/Generics_01",
+    "src\/Generics_01\/Gen_3_method",
+    "src\/Generics_01\/Gen_4_impl",
+    "src\/Generics_01\/Gen_1",
+    "src\/Generics_01\/Gen_6",
+    "src\/Generics_01\/Gen_5_WildcardType",
+    "src\/Generics_01\/Gen_class_1",
+    "src\/Generics_01\/Gen_2",
+    "src\/Array_01",
+    "src\/Scanner",
+    "src\/ch11",
+    "src\/ch11\/lab03",
+    "src\/ch11\/lab03\/solution",
+    "src\/ch11\/lab04",
+    "src\/ch11\/lab04\/solution",
+    "src\/ch11\/lab02",
+    "src\/ch11\/lab02\/solution",
+    "src\/ch11\/lab01",
+    "src\/ch11\/lab01\/solution",
+    "src\/Enum_01"
+  ],
+  "tags_tags" : {
+
+  },
+  "words_info" : {
+    "src\/_data_sturcure\/_data_sturcure.md" : 5,
+    "src\/File_01\/a.txt" : 1,
+    "number.txt" : 3,
+    "myCharStream\/Source\/readme.txt" : 0,
+    "src\/_data_sturcure\/_Queue.md" : 538,
+    "Source2\/readme.txt" : 0,
+    "BufferWriter.txt" : 5,
+    "ArrayListToTxt.txt" : 13,
+    "bin\/File_01\/a.txt" : 1,
+    "Source\/readme.txt" : 0,
+    "Source2\/Source 2\/Source\/readme.txt" : 0,
+    "readme.txt" : 0,
+    "pw.txt" : 2,
+    "fos.txt" : 2,
+    "copy_01.txt" : 40,
+    "array.txt" : 5,
+    "Source2\/Source 2\/readme.txt" : 0,
+    "ArrayListToTxt_Sort.txt" : 5,
+    "Source.txt" : 0,
+    "copy.txt" : 1484,
+    "Target.txt" : 0,
+    "OOSA.TXT" : 0
+  },
+  "tags_paths" : {
+    "OOSA.TXT" : [
+
+    ],
+    "BufferWriter.txt" : [
+
+    ],
+    "ArrayListToTxt.txt" : [
+
+    ],
+    "Source.txt" : [
+
+    ],
+    "Source\/readme.txt" : [
+
+    ],
+    "Source2\/readme.txt" : [
+
+    ],
+    "bin\/File_01\/a.txt" : [
+
+    ],
+    "Source2\/Source 2\/readme.txt" : [
+
+    ],
+    "copy.txt" : [
+
+    ],
+    "array.txt" : [
+
+    ],
+    "readme.txt" : [
+
+    ],
+    "myCharStream\/Source\/readme.txt" : [
+
+    ],
+    "fos.txt" : [
+
+    ],
+    "ArrayListToTxt_Sort.txt" : [
+
+    ],
+    "pw.txt" : [
+
+    ],
+    "src\/File_01\/a.txt" : [
+
+    ],
+    "Source2\/Source 2\/Source\/readme.txt" : [
+
+    ],
+    "src\/_data_sturcure\/_Queue.md" : [
+
+    ],
+    "number.txt" : [
+
+    ],
+    "copy_01.txt" : [
+
+    ],
+    "Target.txt" : [
+
+    ],
+    "src\/_data_sturcure\/_data_sturcure.md" : [
+
+    ]
+  },
+  "links_paths" : {
+    "src\/_data_sturcure\/_data_sturcure.md" : [
+      "_Queue",
+      "src\/_data_sturcure\/_Queue.md"
+    ]
+  },
+  "toc_info" : {
+    "number.txt" : [
+
+    ],
+    "ArrayListToTxt.txt" : [
+
+    ],
+    "copy_01.txt" : [
+
+    ],
+    "Source2\/Source 2\/readme.txt" : [
+
+    ],
+    "bin\/File_01\/a.txt" : [
+
+    ],
+    "fos.txt" : [
+
+    ],
+    "myCharStream\/Source\/readme.txt" : [
+
+    ],
+    "Source2\/Source 2\/Source\/readme.txt" : [
+
+    ],
+    "copy.txt" : [
+
+    ],
+    "Target.txt" : [
+
+    ],
+    "Source2\/readme.txt" : [
+
+    ],
+    "ArrayListToTxt_Sort.txt" : [
+
+    ],
+    "Source.txt" : [
+
+    ],
+    "BufferWriter.txt" : [
+
+    ],
+    "readme.txt" : [
+
+    ],
+    "Source\/readme.txt" : [
+
+    ],
+    "pw.txt" : [
+
+    ],
+    "src\/_data_sturcure\/_data_sturcure.md" : [
+      "0,# 數據結構"
+    ],
+    "array.txt" : [
+
+    ],
+    "src\/_data_sturcure\/_Queue.md" : [
+      "0,# Queue 列隊"
+    ],
+    "src\/File_01\/a.txt" : [
+
+    ],
+    "OOSA.TXT" : [
+
+    ]
+  }
+}
