@@ -1,4 +1,4 @@
-package ch11.lab04.solution;
+package _Java_016Class.ch11_thread.lab04.solution;
 
 public class NumberRunnable implements Runnable {
 	int[] ia;
@@ -11,7 +11,7 @@ public class NumberRunnable implements Runnable {
 	   }
 	}
 	public void printArray(){
-		System.out.print("°}¦C¤¸¯À¦³:");
+		System.out.print("é™£åˆ—å…ƒç´ æœ‰:");
 		for(int x:ia){
 			System.out.print( x + " ");
 		}

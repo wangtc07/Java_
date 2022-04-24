@@ -1,7 +1,7 @@
-package ch11.lab03;
+package _Java_016Class.ch11_thread.lab03;
 
 public class SumThread extends Thread {
-	//½Ğ¥[¤W¾A·íªº±Ô­z
+	//è«‹åŠ ä¸Šé©ç•¶çš„æ•˜è¿°
 	private int sum = 0;
 	
 	public void run() {

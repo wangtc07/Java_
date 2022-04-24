@@ -1,13 +1,13 @@
-package ch11.lab03;
+package _Java_016Class.ch11_thread.lab04;
 
-public class NumberThread extends Thread {
-	//½Ð¥[¤W¾A·íªº±Ô­z
+public class NumberRunnable implements Runnable {
 	int[] ia;
+	
 	public void run() {
-	 
+	
 	}
 	public void printArray(){
-		System.out.print("°}¦C¤¸¯À¦³:");
+		System.out.print("é™£åˆ—å…ƒç´ æœ‰:");
 		for(int x:ia){
 			System.out.print( x + " ");
 		}
