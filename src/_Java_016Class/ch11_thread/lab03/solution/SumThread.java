@@ -1,4 +1,4 @@
-package ch11.lab03.solution;
+package _Java_016Class.ch11_thread.lab03.solution;
 
 public class SumThread extends Thread {
 	private int[] ia1;
@@ -22,15 +22,17 @@ public class SumThread extends Thread {
 			e.printStackTrace();
 		}
 
-		for (int n = 0; n < ia1.length; n++) {
-			sum += ia1[n];
+		for (int i : ia1) {
+			sum += i;
 		}
-		for (int n = 0; n < ia2.length; n++) {
-			sum += ia2[n];
+		for (int i : ia2) {
+			sum += i;
 		}
-//		nt1.printArray();
-//		nt2.printArray();
-//		System.out.println(getSum());
+		System.out.println('-');
+		nt1.printArray();
+		nt2.printArray();
+		System.out.println(getSum());
+		System.out.println('-');
 	}
 
 	public int getSum() {

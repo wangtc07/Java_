@@ -1,5 +1,5 @@
 package Enum_01;
 
 public enum Season {
-	春, 夏, 秋, 冬,
+	SPRING, SUMMER, FALL, WINTER,
 }
