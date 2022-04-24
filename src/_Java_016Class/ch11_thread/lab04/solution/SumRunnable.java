@@ -1,7 +1,7 @@
-package ch11.lab04.solution;
+package _Java_016Class.ch11_thread.lab04.solution;
 
 public class SumRunnable implements Runnable {
-	//½Ğ¥[¤W¾A·íªº±Ô­z
+	//è«‹åŠ ä¸Šé©ç•¶çš„æ•˜è¿°
 	private int[] ia1;
 	private int[] ia2;
 	Thread t1;

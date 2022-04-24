@@ -1,9 +1,9 @@
-package ch11.lab02.solution;
+package _Java_016Class.ch11_thread.lab01.solution;
 
-public class DrawStarRunnable implements Runnable {
+public class DrawStarThread extends Thread {
 	int num;
 	char symbol;
-	public DrawStarRunnable(int num, char symbol) {
+	public DrawStarThread(int num, char symbol) {
 		this.num = num;
 		this.symbol = symbol;
 	}
@@ -15,4 +15,5 @@ public class DrawStarRunnable implements Runnable {
 			System.out.println();
 		}
 	}
+
 }
