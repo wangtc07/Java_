@@ -12,13 +12,13 @@ public class TreadTest_Ticket {
 }
 
 class MyThread2 implements Runnable {
-	private int ticket = 100;
+	private int ticket = 10;
 
 	@Override
 	public void run() {
 		for(int i = 0 ; i < 200 ; i++) {
 			if(this.ticket > 0) {
-				System.out.println(Thread.currentThread().getName()+"賣票---->" + this.ticket--);
+				System.out.println(Thread.currentThread().getName() +"賣票---->" + this.ticket--);
 			}
 		}
 	}

@@ -12,12 +12,8 @@ public class Ticket_1 extends Thread {
         for(int i =0;i<10;i++){
             synchronized (this){
                 if(this.ticket>0){
-                    try {
-                        Thread.sleep(100);
-                        System.out.println(Thread.currentThread().getName()+"賣票---->"+(this.ticket--));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    //                        Thread.sleep(100);
+                    System.out.println(Thread.currentThread().getName()+"賣票---->"+(this.ticket--));
                 }
             }
         }
