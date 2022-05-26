@@ -1,3 +1,11 @@
 /bin/*
 
 /classes/*
+
+.DS_Store
+.idea
+.markeditor
+.db
+.settings
+
+*.mp4
