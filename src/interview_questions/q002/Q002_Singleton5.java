@@ -1,4 +1,4 @@
-package interview_questions;
+package interview_questions.q002;
 
 /**
  * 懶漢式: 延遲創建對象 線程安全(用於多線程)

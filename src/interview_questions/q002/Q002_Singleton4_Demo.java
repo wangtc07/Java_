@@ -1,4 +1,4 @@
-package interview_questions;
+package interview_questions.q002;
 
 public class Q002_Singleton4_Demo {
 

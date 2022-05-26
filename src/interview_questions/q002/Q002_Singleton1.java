@@ -1,4 +1,4 @@
-package interview_questions;
+package interview_questions.q002;
 
 /**
  * 餓漢式: 直接創建對象，不存在線程安全問題
