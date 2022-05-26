@@ -1,4 +1,4 @@
-package interview_questions;
+package interview_questions.q002;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
