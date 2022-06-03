@@ -1,6 +1,4 @@
-package interview_questions.q003;
-
-import org.w3c.dom.ls.LSOutput;
+package com.example.interview.interview_questions.q003;
 
 public class Son extends Father {
 

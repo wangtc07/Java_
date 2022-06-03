@@ -1,4 +1,4 @@
-package interview_questions.q002;
+package com.example.interview.interview_questions.q002;
 
 import java.io.IOException;
 import java.util.Properties;

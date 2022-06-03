@@ -1,4 +1,4 @@
-package interview_questions.q004;
+package com.example.interview.interview_questions.q004;
 
 import java.util.Arrays;
 

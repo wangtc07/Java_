@@ -1,4 +1,4 @@
-package interview_questions.q002;
+package com.example.interview.interview_questions.q002;
 
 /**
  * 懶漢式: 延遲創建對象
