@@ -1,4 +1,4 @@
-package interview_questions.q001;
+package com.example.interview.interview_questions.q001;
 
 public class Q001 {
 

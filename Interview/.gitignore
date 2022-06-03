@@ -1,14 +1,3 @@
-/bin/*
-
-/classes/*
-
-.DS_Store
-.markeditor
-.db
-
-*.mp4
-
-@@ -0,0 +1,33 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
