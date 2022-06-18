@@ -13,15 +13,6 @@ response = requests.get(url=url)
 response.encoding = 'UTF-8'
 # open('blog.html', 'wb').write(response.content)
 
-# selenium 模擬瀏覽器，拉到最後
-browser = ChormeUtils.share_browser()
-browser.get(url)
-# 滑到底部
-js_bottom = 'document.documentElement.scrollTop=100000'
-browser.execute_script(js_bottom)
-time.sleep(2)
-content = browser.page_source
-open('browser_blog.html', 'w').write(content)
 
 path = response.url
 print(path)
@@ -42,3 +33,15 @@ link = list.get('href')
 # -> 本地位址 /s/n46/diary/detail/100091.html
 print(link)
 
+
+# selenium 模擬瀏覽器，拉到最後 ##############################
+browser = ChormeUtils.share_browser()
+browser.get(url)
+# 滑到底部
+js_bottom = 'document.documentElement.scrollTop=100000'
+browser.execute_script(js_bottom)
+time.sleep(2)
+content = browser.page_source
+open('browser_blog.html', 'w').write(content)
+
+# selenium 模擬瀏覽器，拉到最後 ##############################
