@@ -1,8 +1,11 @@
 HELP.md
 
 venv
-.DS_Store
-.mp4
+*.DS_Store
+*.mp4
+*.jpg
+*.jpeg
+*.png
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
