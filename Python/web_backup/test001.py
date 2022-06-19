@@ -24,23 +24,19 @@ soup = BeautifulSoup(origin_html, 'lxml')
 data_src = soup.find_all(attrs={'data-src': True})
 print(data_src)
 domain_pattern = re.compile(r'https://www\.nogizaka46\.com/.*')
+
+
 for data in data_src:
     # 取得 data-src 屬性
     src = data['data-src']
-    # 取得匹配結果，無法匹配返回 None
-    match = domain_pattern.match(src)
-    print(match)
-    if match:
-        # 有 domain -> https://www.nogizaka46.com/files/46/diary/n46/MEMBER/0000_11.jpeg
-        # 下載到本機路徑
-        local_path = ROOT_PATH + utils.replace_domain(src, EMPTY)
-        print('download', src, local_path)
-        utils.download_file(local_path, src)
-        style = 'background-image: url(' + local_path + ');'
-        data['style'] = style
-    else:
-        # 沒有 domain -> /files/46/assets/img/blog/none.png
-        print('not domain', src)
+    utils.download_path(src)
+    local_path = ROOT_PATH + utils.replace_domain(src, EMPTY)
+    style = 'background-image: url(' + local_path + ');'
+    data['style'] = style
+
+    # 加上 is-l
+    new_class = data['class'] + ' is-l'
+    data['class'] = new_class
     # style = 'background-image: url("' + src + '";)'
     # data['style'] = style
 
@@ -88,11 +84,29 @@ replace_class('bl--pg js-pos a--op')
 #     <script src="/files/46/assets/js/lib.js" defer></script>
 #     <script src="/files/46/assets/js/vndr2.js" defer></script>
 #     <script src="/files/46/assets/js/app2.js" defer></script>
+js = soup.find_all('script', src=True)
+
+
+def download_replace_same(path: str, attr: str):
+    global local_path
+    utils.download_path(path)
+    local_path = ROOT_PATH + path
+    j[attr] = local_path
+
+
+for j in js:
+    # 取得網址
+    path = j['src']
+    download_replace_same(path, 'src')
 
 # css
 # <link rel="preload" href="/files/46/assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin>
 # <link rel="preload" as="style" href="/files/46/assets/css/style2.css" onload="this.onload = null; this.rel='stylesheet';">
-
+link_list = soup.find_all('link',
+                     attrs={"rel": ["preload", "apple-touch-icon", "icon", "manifest", "mask-icon"]})
+for link in link_list:
+    path = link['href']
+    download_replace_same(path, 'href')
 
 # 儲存 html
 open('test001.html', 'w').write(soup.prettify())
