@@ -618,7 +618,7 @@ span ._i {
   background-size: cover !important;
   background-position: 50% 50% !important;
   background-repeat: no-repeat !important;
-  opacity: 1;
+  opacity: 0;
 }
 .m--bg.is-l {
   -webkit-transition: opacity 0.8s;
@@ -5759,7 +5759,7 @@ html:not([lang="ja"]) .m--srch {
 .a--op {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  opacity: 1;
+  opacity: 0;
 }
 .a--op.is-v,
 .is-v .a--op {
@@ -5967,7 +5967,7 @@ html:not([lang="ja"]) .m--srch {
 }
 .b--wrap {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   visibility: visible;
   background-color: #fff;
 }
@@ -12437,7 +12437,7 @@ input[type="checkbox"]:checked + .b--st__next__cb:after {
   background-color: #fff;
 }
 .bd--prof__img:before {
-  /* content: ""; */
+  content: "";
   display: block;
   width: 100%;
   padding: 121.21212% 0 0;
