@@ -7,24 +7,28 @@ from bs4 import BeautifulSoup
 from queue import Queue
 from threading import Thread
 import multiprocessing
+import time
 
 
 def run(index, in_q, out_q: Queue):
   print('----------')
+  print('thread:', index)
   html = Queue()
   while in_q.empty() is not True:
+    print('------------------------------')
     print(index, in_q.get())
+    time.sleep(2)
     # 取得頁面連結
-    if index == 1:
-      print(index)
-      out_q.put('html' + str(index))
-      html.put('html' + str(index))
-    elif index == 0:
-      out_q.put('link' + str(index))
+    # if index == 1:
+    #   print(index)
+    #   out_q.put('html' + str(index))
+    #   html.put('html' + str(index))
+    # elif index == 0:
+    #   out_q.put('link' + str(index))
     in_q.task_done()
 
-  if html.empty() is not True:
-    run(index - 1, html, out_q)
+  # if html.empty() is not True:
+  #   run(index - 1, html, out_q)
 
 
 if __name__ == '__main__':
