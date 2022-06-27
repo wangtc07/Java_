@@ -1,0 +1,91 @@
+/usr/bin/python3 /Users/tcwang/Documents/Coding/Python/web_backup/test002.py
+queue 開始大小 1
+9 ----------
+download:  /s/n46/diary/MEMBER/list?ima=3233&page=0&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=0&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=3233&page=0&ct=36753&cd=MEMBER
+download:  /s/n46/diary/detail/100379?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/100379.html
+download done ---------- /s/n46/diary/detail/100379ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/100091?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/100091.html
+download done ---------- /s/n46/diary/detail/100091ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/65326?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/65326.html
+download done ---------- /s/n46/diary/detail/65326ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/64574?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/64574.html
+download done ---------- /s/n46/diary/detail/64574ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/64063?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/64063.html
+download done ---------- /s/n46/diary/detail/64063ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/63816?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/63816.html
+download done ---------- /s/n46/diary/detail/63816ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/63006?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/63006.html
+download done ---------- /s/n46/diary/detail/63006ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/62993?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/62993.html
+download done ---------- /s/n46/diary/detail/62993ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/62559?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/62559.html
+download done ---------- /s/n46/diary/detail/62559ima=4654&cd=MEMBER
+download:  /s/n46/diary/detail/62462?ima=4654&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/detail/62462.html
+download done ---------- /s/n46/diary/detail/62462ima=4654&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=1&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=1&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=1&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=2&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=2&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=2&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=3&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=3&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=3&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=4&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=4&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=4&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=5&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=5&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=5&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=1&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=1&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=1&ct=36753&cd=MEMBER
+download:  /s/n46/diary/MEMBER/list?ima=4654&page=9&ct=36753&cd=MEMBER
+檢查是否下載過:  False
+download path:  ./s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER.html
+download done ---------- /s/n46/diary/MEMBER/listima=4654&page=9&ct=36753&cd=MEMBER
+download:  /files/46/diary/n46/MEMBER/0000_11.jpeg
+檢查是否下載過:  False
+Exception in thread Thread-10:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/tcwang/Documents/Coding/Python/web_backup/test002.py", line 37, in run
+    urls = utils.download(url)
+  File "/Users/tcwang/Documents/Coding/Python/web_backup/utils.py", line 313, in download
+    download_html(html_url, soup.prettify())
+  File "/Users/tcwang/Documents/Coding/Python/web_backup/utils.py", line 71, in download_html
+    open(path, 'w').write(data)
+IsADirectoryError: [Errno 21] Is a directory: '..html'
+download path:  ..html

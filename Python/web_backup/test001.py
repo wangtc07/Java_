@@ -12,18 +12,18 @@ url = '/s/n46/diary/MEMBER/list?ima=1735&page=0&ct=36753&cd=MEMBER'
 # 下載一個頁面
 def download_html(url):
   # 移除 ima
-  url = utils.re_link_path(url, 0)
+  n_url = utils.re_link_path(url, 0)
 
   # 檢查是否下載過
   # ./s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
-  html_url = utils.add_html(url)
+  html_url = utils.add_html(n_url)
   flag = utils.check_downloaded(html_url)
-  print(url)
+  print(n_url)
   if not flag:
     return
 
-  domain_url = utils.add_domain(url)
-  path_level: int = utils.get_level(url)
+  domain_url = utils.add_domain(n_url)
+  path_level: int = utils.get_level(n_url)
   response = requests.get(url=domain_url)
   # 設定編碼格式
   response.encoding = 'UTF-8'
