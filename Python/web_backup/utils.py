@@ -68,8 +68,9 @@ def reaplce_reg_text(path):
 # path: domain + path
 def download_html(path: str, data):
   print('download path: ', path)
-  make_dirs(path)
-  open(path, 'w').write(data)
+  re_reg = reaplce_reg_text(path)
+  make_dirs(re_reg)
+  open(re_reg, 'w').write(data)
 
 
 # 下載檔案
@@ -229,8 +230,7 @@ def write_wait_download_log(html_list: list):
   open(wait_log, 'w').write(new_log)
 
 
-# 移除連結 ima 參數
-def re_link_path(path: str, level: int):
+def re_ima_path(path):
   # 單篇 blog
   detail_reg = re.compile(r'.*detail/.*')
   list_reg = re.compile(r'.*MEMBER/list.*')
@@ -242,6 +242,12 @@ def re_link_path(path: str, level: int):
     new_path = re.sub(r"(ima=[0-9]*&)", "", path)
 
   result = re.sub(r"\?cd=MEMBER", "", new_path)
+  return result
+
+# 移除連結 ima 參數
+def re_link_path(path: str, level: int):
+  # 單篇 blog
+  result = re_ima_path(path)
 
   return get_data_path(result, level)
 
@@ -342,7 +348,7 @@ def download(url: str):
       img_url = img['src']
       wait_download.append(img_url)
       new_link = get_data_path(img_url, path_level)
-      l_path = dc_img_paths[i]
+      # l_path = dc_img_paths[i]
       img['src'] = new_link
       i = i + 1
 
@@ -353,7 +359,8 @@ def download(url: str):
       wait_download.append(link)
       new_link = re_link_path(link, path_level)
       html_path = add_html(new_link)
-      html['href'] = html_path
+      re_html_path = reaplce_reg_text(html_path)
+      html['href'] = re_html_path
 
   # 移除連結 ima 參數，加入下載清單，替換連結
   set_new_link_and_wait_download(blog_list)
