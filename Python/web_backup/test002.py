@@ -9,9 +9,9 @@ from threading import Thread
 import utils
 
 
-def run(index, wait_html_urls, out_downloaded_urls: Queue,
+def run(index, wait_html_urls: Queue, out_downloaded_urls: Queue,
     out_other_urls: Queue):
-  print(index, '----------')
+  # print(index, '----------')
   test = 1
   while wait_html_urls.empty() is not True:
     # if test > 2:
@@ -19,15 +19,20 @@ def run(index, wait_html_urls, out_downloaded_urls: Queue,
     #   break
     test = test + 1
     url = wait_html_urls.get()
-    print('download: ', url)
+    print(index, 'download: ', url)
     # 移除 ima
-    n_url = utils.re_link_path(url, 0)
+    # /s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER
+    n_url = utils.re_ima_path(url)
 
+    # 加 html
+    # /s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER.html
+    # html_url = utils.add_html(n_url)
+
+    # 移除 ? 號
+    # ed_url = utils.reaplce_reg_text(html_url)
     # 檢查是否下載過
-    # ./s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
-    html_url = utils.add_html(n_url)
-    content = html_url in out_downloaded_urls.queue
-    print('檢查是否下載過: ', content)
+    content = n_url in out_downloaded_urls.queue
+    print('檢查是否下載過: ', content, n_url)
 
     # 下載過 -> 跳過
     if content:
@@ -41,11 +46,19 @@ def run(index, wait_html_urls, out_downloaded_urls: Queue,
     html_urls = all_urls.html
     # 沒下載過加回待下載 html
     for html_url in html_urls:
-      content = html_url in out_downloaded_urls.queue
+      # 移除 ima
+      # /s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER
+      n_html_url = utils.re_ima_path(html_url)
+      # 加 html
+      # /s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER.html
+      # html_url = utils.add_html(n_url)
+      content = n_html_url in out_downloaded_urls.queue
+      print("下載過:", content, html_url)
       if content:
         continue
-      # else:
-      # wait_html_urls.put(html_url)
+      else:
+        print('add html: ', n_html_url)
+        wait_html_urls.put(n_html_url)
 
     # 其他 待下載 url
     oth_urls: list = all_urls.oth
@@ -57,9 +70,8 @@ def run(index, wait_html_urls, out_downloaded_urls: Queue,
     for other_url in out_oth_urls:
       out_other_urls.put(other_url)
 
-    ed_url = utils.reaplce_reg_text(url)
-    out_downloaded_urls.put(ed_url)
-    print('download done ----------', ed_url)
+    out_downloaded_urls.put(n_url)
+    print('download done: ', wait_html_urls.qsize(), n_url)
     wait_html_urls.task_done()
 
   # if html.empty() is not True:
@@ -69,6 +81,7 @@ def run(index, wait_html_urls, out_downloaded_urls: Queue,
 def download_oth(out_other_urls: Queue, error_urls: Queue, ed_urls: Queue):
   while out_other_urls.empty() is not True:
     url = out_other_urls.get()
+    print('download other: ', url)
 
     if url in ed_urls.queue:
       out_other_urls.task_done()
@@ -89,6 +102,7 @@ def download_oth(out_other_urls: Queue, error_urls: Queue, ed_urls: Queue):
 
 
 download_log = 'downloaded.log'
+import multiprocessing
 
 if __name__ == '__main__':
   start = time.time()
@@ -100,6 +114,15 @@ if __name__ == '__main__':
   other_urls = Queue()
   # 下載錯誤 url
   error_urls = Queue()
+
+  # # 要下載的 html url
+  # queue = multiprocessing.Manager().Queue()
+  # # 下載完的 url
+  # downloaded_queue = multiprocessing.Manager().Queue()
+  # # 要下載的 other url
+  # other_urls = multiprocessing.Manager().Queue()
+  # # 下載錯誤 url
+  # error_urls = multiprocessing.Manager().Queue()
 
   downloaded = open(download_log, encoding='UTF-8')
   text_list = downloaded.read().split('\n')
@@ -134,35 +157,61 @@ if __name__ == '__main__':
   #   oth = other_urls.get()
   #   print(oth)
 
-  print('queue 開始大小 %d' % queue.qsize())
+  # print('queue 開始大小 %d' % queue.qsize())
+  # pool = multiprocessing.Pool(5)  # 異步進程池（非阻塞）
+  #
+  # for index in range(10):
+  #   pool.apply_async(run, args=(index, queue, downloaded_queue, other_urls,))   # 維持執行的進程總數為10，當一個進程執行完後啟動一個新進程.
+  # pool.close()
+  # pool.join()
+  #
+  # queue.join()  # 隊列消費完 線程結束
+
+  threads = []
 
   for index in range(10):
     thread = Thread(target=run,
                     args=(index, queue, downloaded_queue, other_urls,))
+    thread.daemon = True  # 隨主線程退出而退出
+    thread.start()
+    threads.append(thread)
 
-  thread.daemon = True  # 隨主線程退出而退出
-  thread.start()
+  # 等待所有線程完成
+  for thread in threads:
+    thread.join()
 
-  queue.join()  # 隊列消費完 線程結束
+  # queue.join()  # 隊列消費完 線程結束
 
-  out = list(other_urls.queue)
+  out = set(other_urls.queue)
   log = '\n'.join(out)
   open('wait_other.log', 'w').write(log)
+
+  n_other_urls = Queue()
+  for url in out:
+      n_other_urls.put(url)
 
   print('--------------------------------------------')
   print(queue.qsize())
 
-  print('other 開始大小 %d' % other_urls.qsize())
+  print('other 開始大小 %d' % n_other_urls.qsize())
+
+  # pool2 = multiprocessing.Pool(5)  # 異步進程池（非阻塞）
+  #
+  # for index in range(10):
+  #   pool2.apply_async(download_oth, args=(other_urls, error_urls, downloaded_queue))   # 維持執行的進程總數為10，當一個進程執行完後啟動一個新進程.
+  # pool2.close()
+  # pool2.join()
+  #
+  # queue.join()  # 隊列消費完 線程結束
 
   for i in range(0, 2):
     thread2 = Thread(target=download_oth,
-                     args=(other_urls, error_urls, downloaded_queue))
+                     args=(n_other_urls, error_urls, downloaded_queue))
+    thread2.daemon = True  # 隨主線程退出而退出
+    thread2.start()
 
-  thread2.daemon = True  # 隨主線程退出而退出
-  thread2.start()
-
-  other_urls.join()  # 隊列消費完 線程結束
+  n_other_urls.join()  # 隊列消費完 線程結束
   print('--------------------------------------------')
-  print(other_urls.qsize())
+  print(n_other_urls.qsize())
 
   # 下載 other_urls
