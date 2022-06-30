@@ -89,24 +89,27 @@ path = './i/TBW3s78it3wcC9OXcPugfpOCfR0aALu1V5B3ezGQ5MwA1ybuj0iORLLQ7xNpv7IA724o
 import ChormeUtils
 from selenium.webdriver.common.by import By
 
-browser = ChormeUtils.share_browser()
-browser.get(dcimg)
-browser.implicitly_wait(3)
-browser.save_screenshot('test.png')
-img = browser.find_element(By.XPATH, '//img')
-# print(img)
-# 00415a8f4aada324450007caa41611ec
-cook = browser.get_cookie('PHPSESSID')
-print(cook)
-cookies = cook['value']
-print(cookies)
-headers = {
-  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
-  'Host': 'dcimg.awalker.jp',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-  # 'Cookie': 'PHPSESSID=t7595i2frp13as6shjqi032ft2; __utma=138832931.217461619.1656227363.1656227363.1656227363.1; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmb=138832931.3.10.1656227363'
-  'Cookie': 'PHPSESSID=' + 'vgu3d03rhurn632bolosvn95m9' + '; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=138832931.217461619.1656227363.1656232261.1656255927.3; __utmt=1; __utmb=138832931.2.10.1656255927'
-}
+'''
+測試 selenium 取 Cookies
+'''
+# browser = ChormeUtils.share_browser()
+# browser.get(dcimg)
+# browser.implicitly_wait(3)
+# browser.save_screenshot('test.png')
+# img = browser.find_element(By.XPATH, '//img')
+# # print(img)
+# # 00415a8f4aada324450007caa41611ec
+# cook = browser.get_cookie('PHPSESSID')
+# print(cook)
+# cookies = cook['value']
+# print(cookies)
+# headers = {
+#   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
+#   'Host': 'dcimg.awalker.jp',
+#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+#   # 'Cookie': 'PHPSESSID=t7595i2frp13as6shjqi032ft2; __utma=138832931.217461619.1656227363.1656227363.1656227363.1; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmb=138832931.3.10.1656227363'
+#   'Cookie': 'PHPSESSID=' + 'vgu3d03rhurn632bolosvn95m9' + '; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=138832931.217461619.1656227363.1656232261.1656255927.3; __utmt=1; __utmb=138832931.2.10.1656255927'
+# }
 
 # import os
 # urllib.request.urlretrieve(dcimg, os.path.join('./i' , '6hFRpVkeeZQGol0FirjaMGGxhCstxFOp0wdkCcM0vl5xX7wSp3RlyZjeBvhHPRUh6SG5bdMFTrEADDS0v16Y4LmrSOFlxnFviPuOXV5KKGOzqC0g282YZlCdo6SDC1llWPTQhM1m2sYyGiqnORA8m2HcT1Sx4vVfYpUKb1Cy2DxMONs1EZ1vP2ahj6JJ3heSyK2WbyEo.png'))
@@ -138,25 +141,25 @@ headers = {
 # cookies = '9dv062seruhnc81cpic9u22844'
 
 
-headers = {
-  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
-  'Host': 'dcimg.awalker.jp',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-  # 'Cookie': 'PHPSESSID=t7595i2frp13as6shjqi032ft2; __utma=138832931.217461619.1656227363.1656227363.1656227363.1; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmb=138832931.3.10.1656227363'
-  'Cookie': 'PHPSESSID=' + cookies + '; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=138832931.217461619.1656227363.1656232261.1656255927.3; __utmt=1; __utmb=138832931.2.10.1656255927'
-  # 'Cookie': 'PHPSESSID=8cnigu8d68e32shbi1j3s3ihqc; __utma=138832931.1738054023.1656343958.1656343958.1656343958.1; __utmc=138832931; __utmz=138832931.1656343958.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __utmb=138832931.1.10.1656343958; __gads=ID=e15372df9b1380da-220a7689cad40079:T=1656343958:RT=1656343958:S=ALNI_MakYyypVhX3Y5rP112cZLQKxbPVEA; __gpi=UID=000007090444e766:T=1656343958:RT=1656343958:S=ALNI_MZFQhDxabg9bJOOIC8jb8e7mTdTmg'
-  # 'Cookie': 'PHPSESSID=8cnigu8d68e32shbi1j3s3ihqc; __utma=138832931.1738054023.1656343958.1656343958.1656343958.1; __utmc=138832931; __utmz=138832931.1656343958.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __gads=ID=e15372df9b1380da-220a7689cad40079:T=1656343958:RT=1656343958:S=ALNI_MakYyypVhX3Y5rP112cZLQKxbPVEA; __gpi=UID=000007090444e766:T=1656343958:RT=1656343958:S=ALNI_MZFQhDxabg9bJOOIC8jb8e7mTdTmg; __utmb=138832931.2.10.1656343958'
-}
+# headers = {
+#   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
+#   'Host': 'dcimg.awalker.jp',
+#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+#   # 'Cookie': 'PHPSESSID=t7595i2frp13as6shjqi032ft2; __utma=138832931.217461619.1656227363.1656227363.1656227363.1; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmb=138832931.3.10.1656227363'
+#   'Cookie': 'PHPSESSID=' + cookies + '; __utmc=138832931; __utmz=138832931.1656227363.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=138832931.217461619.1656227363.1656232261.1656255927.3; __utmt=1; __utmb=138832931.2.10.1656255927'
+#   # 'Cookie': 'PHPSESSID=8cnigu8d68e32shbi1j3s3ihqc; __utma=138832931.1738054023.1656343958.1656343958.1656343958.1; __utmc=138832931; __utmz=138832931.1656343958.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __utmb=138832931.1.10.1656343958; __gads=ID=e15372df9b1380da-220a7689cad40079:T=1656343958:RT=1656343958:S=ALNI_MakYyypVhX3Y5rP112cZLQKxbPVEA; __gpi=UID=000007090444e766:T=1656343958:RT=1656343958:S=ALNI_MZFQhDxabg9bJOOIC8jb8e7mTdTmg'
+#   # 'Cookie': 'PHPSESSID=8cnigu8d68e32shbi1j3s3ihqc; __utma=138832931.1738054023.1656343958.1656343958.1656343958.1; __utmc=138832931; __utmz=138832931.1656343958.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmt=1; __gads=ID=e15372df9b1380da-220a7689cad40079:T=1656343958:RT=1656343958:S=ALNI_MakYyypVhX3Y5rP112cZLQKxbPVEA; __gpi=UID=000007090444e766:T=1656343958:RT=1656343958:S=ALNI_MZFQhDxabg9bJOOIC8jb8e7mTdTmg; __utmb=138832931.2.10.1656343958'
+# }
 
 #
 # try:
-request = urllib.request.Request(url=dcimg_i, headers=headers)
-response = urllib.request.urlopen(request)
-
-p = response.read()
-open(
-    path,
-    'wb').write(p)
+# request = urllib.request.Request(url=dcimg_i, headers=headers)
+# response = urllib.request.urlopen(request)
+#
+# p = response.read()
+# open(
+#     path,
+#     'wb').write(p)
 # except:
 #   print('error: ', dcimg)
 
@@ -272,18 +275,70 @@ from bs4 import BeautifulSoup
 
 # soup = BeautifulSoup(open('blog.html', encoding='UTF-8'), 'lxml')
 
-# page_list = soup.select('.coun a')
-# print(page_list)
-# print(len(page_list))
-#
-# next_page = soup.select('.next a')
-# print(next_page)
-#
-# prv_page = soup.select('.prev a')
-# print(prv_page)
-#
-# pager_page = soup.select('._pager a')
+response = requests.get(url='https://www.nogizaka46.com/s/n46/diary/detail/43464?ima=1606&cd=MEMBER')
+# 設定編碼格式
+response.encoding = 'UTF-8'
+origin_html = response.text
+
+soup = BeautifulSoup(origin_html, 'lxml')
+
+# 圖片
+# data-src="https://www.nogizaka46.com/images/46/445/60cae08cc551e45e9d8aa008f871c.jpg"
+# ->
+# style="background-image: url("https://www.nogizaka46.com/images/46/445/60cae08cc551e45e9d8aa008f871c.jpg");"
+data_src = soup.find_all(attrs={'data-src': True})
+
+
+def set_new_link_and_wait_download(html_list: list):
+  for html in html_list:
+    # 下載新頁面
+    link = html['href']
+    # /s/n46/diary/MEMBER/list?ima=4_pager435&page=9&ct=36753&cd=MEMBER
+    # wait_download.append(link)
+    new_link = utils.re_link_path(link, 0)
+    html_path = utils.add_html(new_link)
+    re_html_path = utils.reaplce_reg_text(html_path)
+    html['href'] = re_html_path
+pager_page = soup.select('._pager a')
+
+
 # print(pager_page)
+
+set_new_link_and_wait_download(pager_page)
+
+# new entry blog
+new_entry = soup.select('.bd--ne__one__a.hv--op')
+# print(new_entry)
+set_new_link_and_wait_download(new_entry)
+
+# 前の記事
+next_blog = soup.select('.bd--hn__a.hv--op')
+# print(next_blog)
+set_new_link_and_wait_download(next_blog)
+
+next_blog = soup.select('.m--pnv__a.m--fic.hv--op')
+set_new_link_and_wait_download(next_blog)
+
+calender_opt = soup.find_all('select', attrs=
+{"class": "bd--arc__sel__i js-ancsel js-arccl-sel"})
+print(calender_opt)
+
+calender_opt = soup.select('option', attrs={
+  "value": re.compile("^http")
+})
+print(calender_opt)
+# //select[@class="bd--arc__sel__i js-ancsel js-arccl-sel"]/option
+all = soup.select('option', value=re.compile("^http.*"))
+print(all)
+
+header = soup.select('.bd--prof__img.m--fic.hv--op')
+print(header)
+
+title = soup.select('.m--allhd__ja__a.hv--op')
+print(title)
+
+print('-------------')
+# print(soup.prettify())
 
 
 # def get_class_list(clazz):

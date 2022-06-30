@@ -110,6 +110,7 @@ def is_dc_page(url):
   reg = re.compile('.*dcimg.*')
   return reg.match(url)
 
+
 def download_path(src: str):
   # 取得匹配結果，無法匹配返回 None
   match = domain_pattern.match(src)
@@ -131,6 +132,7 @@ def download_path(src: str):
 
 
 dcimg_domain = 'http://dcimg.awalker.jp'
+
 
 # 返回 .png 實際 path
 def download_dc_page(url):
@@ -165,7 +167,7 @@ def download_dc_page(url):
   # 儲存 html
   download_html(html_url, soup.prettify())
 
-  return  path + '.png'
+  return path + '.png'
 
   # js = soup.find_all('script', src=True)
   #
@@ -183,12 +185,23 @@ def download_dc_page(url):
 def get_dc_path(url):
   return ROOT_PATH + re.sub(r"http://dcimg\.awalker\.jp/v", "/i", url) + '.png'
 
+
+def is_err_dcimg(url):
+  err_reg = re.compile(r".*img1\.php.*")
+  return err_reg.match(url)
+
+
 import ChormeUtils
+
 
 # path: ./i/zsLXSUgLvNVFYAoZA0EXjjSYCTVNyBPfGTPDFN7gdMnURadVzPCiNpA5GqCb61xWlqqTbxnOYCc4Pqh0fzmE18tyDa5ECgYk239IBOeSulBHFVSaE2KzMWqASOr0ACcq60WhPWINdjJW5D3CVMfCA8UfgBBTbKjuQAiwPk9X1KU0DGs8fQGQFVWCzoAc9j37BL1WEfhx
 # url: http://dcimg.awalker.jp/v/zsLXSUgLvNVFYAoZA0EXjjSYCTVNyBPfGTPDFN7gdMnURadVzPCiNpA5GqCb61xWlqqTbxnOYCc4Pqh0fzmE18tyDa5ECgYk239IBOeSulBHFVSaE2KzMWqASOr0ACcq60WhPWINdjJW5D3CVMfCA8UfgBBTbKjuQAiwPk9X1KU0DGs8fQGQFVWCzoAc9j37BL1WEfhx
 
 def download_dcimg(path, url):
+  # http://dcimg.awalker.jp/img1.php?id=nVUBq7MT2ntqBgwlHX6nRbrRMeYVutr4K5nCGIuO4vv9JhSeslEV9A8m4PN1T7bFulHJ7eaZs2GEpjeZp7dTnIfWrl1I8tUn9AHoHIQR0mZAUHj9QTn4Y4Ha7ZvTZOpTKdsdhY3PC3934rIXoaGfYB3GVnfrLNnbH7zfyxMjxoM3MsGIKpWbbYy7XbIvBNXUP0xGBlI6
+  # 失效頁面跳過
+  if is_err_dcimg(url):
+    return
   browser = ChormeUtils.share_browser()
   browser.get(url)
   cook = browser.get_cookie('PHPSESSID')
@@ -213,7 +226,6 @@ def download_dcimg(path, url):
       'wb').write(p)
 
 
-
 # 寫入以下載檔案
 def write_log():
   new_log = '\n'.join(text_list)
@@ -236,13 +248,14 @@ def re_ima_path(path):
   list_reg = re.compile(r'.*MEMBER/list.*')
   new_path = ''
   if detail_reg.match(path):
-    new_path = re.sub(r"(ima=[0-9]*&)", "", path)
+    new_path = re.sub(r"(ima=[\w]*&)", "", path)
 
   if list_reg.match(path):
-    new_path = re.sub(r"(ima=[0-9]*&)", "", path)
+    new_path = re.sub(r"(ima=[\w]*&)", "", path)
 
   result = re.sub(r"\?cd=MEMBER", "", new_path)
   return result
+
 
 # 移除連結 ima 參數
 def re_link_path(path: str, level: int):
@@ -310,6 +323,16 @@ def download(url: str):
     for item in list:
       item['class'] = clazz + ' is-v'
 
+  def set_new_link_and_wait_download(html_list: list):
+    for html in html_list:
+      # 下載新頁面
+      link = html['href']
+      wait_download.append(link)
+      new_link = re_link_path(link, path_level)
+      html_path = add_html(new_link)
+      re_html_path = reaplce_reg_text(html_path)
+      html['href'] = re_html_path
+
   # 頁面 list ------------------------------------------------------------
   # class="bl--card js-pos a--op hv--thumb"
   # ->
@@ -317,10 +340,34 @@ def download(url: str):
   blog_class = 'bl--card js-pos a--op hv--thumb'
   blog_list = get_class_list(blog_class)
   replace_class_by_list(blog_class, blog_list)
+  # 移除連結 ima 參數，加入下載清單，替換連結
+  set_new_link_and_wait_download(blog_list)
+
+  # new entry blog
+  new_entry = soup.select('.bd--ne__one__a.hv--op')
+  set_new_link_and_wait_download(new_entry)
+  view_new = soup.select('.bd--ne__btn__a m--fic.hv--op')
+  set_new_link_and_wait_download(view_new)
+
+  # 前の記事 bd--hn__a hv--op
+  next_blog = soup.select('.bd--hn__a.hv--op')
+  set_new_link_and_wait_download(next_blog)
+  # BLOG底部 m--pnv__a m--fic hv--op
+  footer_blog = soup.select('.m--pnv__a.m--fic.hv--op')
+  set_new_link_and_wait_download(footer_blog)
+  # 日曆 calender blog
+  calender_blog = soup.select('td a')
+  set_new_link_and_wait_download(calender_blog)
+  # 大頭相
+  header = soup.select('.bd--prof__img.m--fic.hv--op')
+  set_new_link_and_wait_download(header)
+  # title
+  title = soup.select('.m--allhd__ja__a.hv--op')
+  set_new_link_and_wait_download(title)
+
 
   # 等待下載清單: /s/n46/diary/detail/100091?ima=4435&cd=MEMBER
   wait_download = []
-
 
   # 替換 dcimg 到 <img>
   a_link = soup.select('a')
@@ -329,6 +376,10 @@ def download(url: str):
     reg = re.compile('.*dcimg.*')
     if reg.match(str(link)):
       # url: http://dcimg.awalker.jp/v/TBW3s78it3wcC9OXcPugfpOCfR0aALu1V5B3ezGQ5MwA1ybuj0iORLLQ7xNpv7IA724oeWQcEPcwA53gyeLTI5hrSzE38OBgpBt6yjiosCzY4rLAYqTxCnUGgzLvElzq7SzKn9QF3mmSaAWw8j5WKVStUZWdJJkkk0kLTmrW45fI4xJaACN9YlOWMTYdlPhSebpMo6gM
+      # 連結失效跳過
+      if is_err_dcimg(link):
+        link['href'] = ''
+        continue
       url = link['href']
       # path = download_dc_page(url)
       wait_download.append(url)
@@ -336,7 +387,6 @@ def download(url: str):
       l_path = get_data_path(path, path_level)
       dc_img_paths.append(l_path)
       link['href'] = l_path
-
 
   # img
   # src="/images/46/ac5/8b0421d858a5cc0abe8d40ba31903.jpg"
@@ -351,19 +401,6 @@ def download(url: str):
       # l_path = dc_img_paths[i]
       img['src'] = new_link
       i = i + 1
-
-  def set_new_link_and_wait_download(html_list: list):
-    for html in html_list:
-      # 下載新頁面
-      link = html['href']
-      wait_download.append(link)
-      new_link = re_link_path(link, path_level)
-      html_path = add_html(new_link)
-      re_html_path = reaplce_reg_text(html_path)
-      html['href'] = re_html_path
-
-  # 移除連結 ima 參數，加入下載清單，替換連結
-  set_new_link_and_wait_download(blog_list)
 
   # 顯示
   # blog 標題
