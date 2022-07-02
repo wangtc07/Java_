@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
+ROOT_FOLDER = './kubo_blog'
 ROOT_PATH = '.'
 EMPTY = ''
 DOMAIN = 'https://www.nogizaka46.com/'
@@ -54,13 +55,13 @@ def add_html(url):
 # 取得資料夾路徑
 def replace_file_path(path: str):
   # 移除檔名 ./files/46/diary/n46/MEMBER/0000_11.jpeg -> ./files/46/diary/n46/MEMBER
-  path = reaplce_reg_text(path)
+  path = replace_reg_text(path)
   arr = path.split('/')
   reg = '/' + arr[len(arr) - 1]
   return re.sub(reg, '', path)
 
 
-def reaplce_reg_text(path):
+def replace_reg_text(path):
   return re.sub(r'\?', '', path)
 
 
@@ -68,7 +69,7 @@ def reaplce_reg_text(path):
 # path: domain + path
 def download_html(path: str, data):
   print('download path: ', path)
-  re_reg = reaplce_reg_text(path)
+  re_reg = replace_reg_text(path)
   make_dirs(re_reg)
   open(re_reg, 'w').write(data)
 
@@ -125,7 +126,7 @@ def download_path(src: str):
     download_dc_page(src)
   else:
     # 沒有 domain -> /files/46/assets/img/blog/none.png
-    local_path = ROOT_PATH + src
+    local_path = re_link_path(src)
     download_src = DOMAIN + src
 
     download_file(local_path, download_src)
@@ -233,7 +234,7 @@ def write_log():
 
 
 def add_downloaded(url):
-  url = reaplce_reg_text(url)
+  url = replace_reg_text(url)
   text_list.append(url)
 
 
@@ -246,7 +247,7 @@ def re_ima_path(path):
   # 單篇 blog
   detail_reg = re.compile(r'.*detail/.*')
   list_reg = re.compile(r'.*MEMBER/list.*')
-  new_path = ''
+  new_path = path
   if detail_reg.match(path):
     new_path = re.sub(r"(ima=[\w]*&)", "", path)
 
@@ -262,19 +263,38 @@ def re_link_path(path: str, level: int):
   # 單篇 blog
   result = re_ima_path(path)
 
+  if level == 0:
+    return ROOT_FOLDER + result
+
   return get_data_path(result, level)
+
+
+# 移除連結 ima 參數, 取得檔案下載位置
+def re_link_path(path: str):
+  # 單篇 blog
+  result = re_ima_path(path)
+
+  return ROOT_FOLDER + result
+
+  # return get_data_path(result, level)
 
 
 # 下載 html, 返回未下載連結
 def download(url: str):
-  # 移除 ima
+  # 移除 domain
   re_domain = replace_domain(url, '')
+  # 移除 ima -> 檔案位置
+  # ./s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER
   n_url = re_link_path(re_domain, 0)
 
-  # ./s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
+  # 加附檔名
+  # /s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
   html_url = add_html(n_url)
 
+  # 加 domain
+  # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
   domain_url = add_domain(n_url)
+  # 檔案在第幾層資料夾
   path_level: int = get_level(n_url)
   response = requests.get(url=domain_url)
   # 設定編碼格式
@@ -330,7 +350,7 @@ def download(url: str):
       wait_download.append(link)
       new_link = re_link_path(link, path_level)
       html_path = add_html(new_link)
-      re_html_path = reaplce_reg_text(html_path)
+      re_html_path = replace_reg_text(html_path)
       html['href'] = re_html_path
 
   # 頁面 list ------------------------------------------------------------

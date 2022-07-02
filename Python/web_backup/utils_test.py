@@ -297,7 +297,7 @@ def set_new_link_and_wait_download(html_list: list):
     # wait_download.append(link)
     new_link = utils.re_link_path(link, 0)
     html_path = utils.add_html(new_link)
-    re_html_path = utils.reaplce_reg_text(html_path)
+    re_html_path = utils.replace_reg_text(html_path)
     html['href'] = re_html_path
 pager_page = soup.select('._pager a')
 
