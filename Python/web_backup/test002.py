@@ -127,12 +127,14 @@ if __name__ == '__main__':
   downloaded = open(download_log, encoding='UTF-8')
   text_list = downloaded.read().split('\n')
   for url in text_list:
+    print('downloaded', url)
     downloaded_queue.put(url)
 
   # 測試 list
-  for i in range(0, 10):
+  # /s/n46/diary/MEMBER/list?ima=5606&ct=40005
+  for i in range(0, 36):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=3233&page=' + str(
+        '/s/n46/diary/MEMBER/list?ima=5606&page=' + str(
             i) + '&ct=36753&cd=MEMBER')
 
   # 測試 blog

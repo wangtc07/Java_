@@ -12,7 +12,7 @@ url = '/s/n46/diary/MEMBER/list?ima=1735&page=0&ct=36753&cd=MEMBER'
 # 下載一個頁面
 def download_html(url):
   # 移除 ima
-  n_url = utils.re_link_path(url, 0)
+  n_url = utils.re_ima_set_folder_path(url)
 
   # 檢查是否下載過
   # ./s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html

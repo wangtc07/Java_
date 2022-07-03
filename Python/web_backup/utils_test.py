@@ -295,7 +295,7 @@ def set_new_link_and_wait_download(html_list: list):
     link = html['href']
     # /s/n46/diary/MEMBER/list?ima=4_pager435&page=9&ct=36753&cd=MEMBER
     # wait_download.append(link)
-    new_link = utils.re_link_path(link, 0)
+    new_link = utils.re_ima_set_folder_path(link)
     html_path = utils.add_html(new_link)
     re_html_path = utils.replace_reg_text(html_path)
     html['href'] = re_html_path

@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
-ROOT_FOLDER = './kubo_blog'
+ROOT_FOLDER = './yonki'
 ROOT_PATH = '.'
 EMPTY = ''
 DOMAIN = 'https://www.nogizaka46.com/'
@@ -18,7 +18,7 @@ text_list = downloaded.read().split('\n')
 
 # 取得所在第幾層資料夾
 def get_level(url: str):
-  return len(url.split('/')) - 2
+  return len(url.split('/')) - 3
 
 
 # 根據 html 在第幾層，往回推
@@ -34,8 +34,9 @@ def get_data_path(path: str, level: int):
   return path
 
 
+# url: /s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER
 def add_domain(url):
-  path = re.sub(r"\./", '', url)
+  path = re.sub(r"^/", '', url)
   return DOMAIN + path
 
 
@@ -119,16 +120,18 @@ def download_path(src: str):
   if match:
     # 有 domain -> https://www.nogizaka46.com/files/46/diary/n46/MEMBER/0000_11.jpeg
     # 下載到本機路徑
-    local_path = ROOT_PATH + replace_domain(src, EMPTY)
-
+    local_path = ROOT_FOLDER + replace_domain(src, EMPTY)
+    print('local_path local', local_path)
     download_file(local_path, src)
   elif is_dc_page(src):
-    download_dc_page(src)
+    print('local_path dc', src)
+    path = get_dc_path(src)
+    download_dcimg(path, src)
   else:
     # 沒有 domain -> /files/46/assets/img/blog/none.png
-    local_path = re_link_path(src)
+    local_path = re_ima_set_folder_path(src)
     download_src = DOMAIN + src
-
+    print('local_path', local_path)
     download_file(local_path, download_src)
 
 
@@ -151,14 +154,13 @@ def download_dc_page(url):
     reg = re.compile('.*src.*')
     if reg.match(tag):
       path = img['src']
-      print(path)
       level = get_level(path)
       n_path = get_data_path(path, level)
 
       # 下載圖片
       local_path = ROOT_PATH + path + '.png'
+      print('dc down', local_path)
       download_src = 'http://dcimg.awalker.jp' + path
-      print(download_src)
       download_dcimg(local_path, download_src)
 
       img['src'] = n_path + '.png'
@@ -184,12 +186,19 @@ def download_dc_page(url):
 
 
 def get_dc_path(url):
-  return ROOT_PATH + re.sub(r"http://dcimg\.awalker\.jp/v", "/i", url) + '.png'
+  return ROOT_FOLDER + re.sub(r"http://dcimg\.awalker\.jp/v", "/i",
+                              url) + '.png'
 
 
 def is_err_dcimg(url):
   err_reg = re.compile(r".*img1\.php.*")
-  return err_reg.match(url)
+  match = False
+  try:
+    match = err_reg.match(url)
+  except:
+    print('判斷錯誤', url)
+    match = False
+  return match
 
 
 import ChormeUtils
@@ -204,11 +213,16 @@ def download_dcimg(path, url):
   if is_err_dcimg(url):
     return
   browser = ChormeUtils.share_browser()
+  print('url', url)
   browser.get(url)
   cook = browser.get_cookie('PHPSESSID')
   print(cook)
-  cookies = cook['value']
-  print(cookies)
+  cookies = 't7595i2frp13as6shjqi032ft2'
+  try:
+    cookies = cook['value']
+  except:
+    cookies = 't7595i2frp13as6shjqi032ft2'
+
   headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
     'Host': 'dcimg.awalker.jp',
@@ -219,12 +233,16 @@ def download_dcimg(path, url):
   dcimg_i = re.sub(r"/v", "/i", url)
 
   request = urllib.request.Request(url=dcimg_i, headers=headers)
-  response = urllib.request.urlopen(request)
+  try:
+    response = urllib.request.urlopen(request)
 
-  p = response.read()
-  open(
-      path,
-      'wb').write(p)
+    p = response.read()
+    make_dirs(path)
+    open(
+        path,
+        'wb').write(p)
+  except:
+    return
 
 
 # 寫入以下載檔案
@@ -243,7 +261,8 @@ def write_wait_download_log(html_list: list):
   open(wait_log, 'w').write(new_log)
 
 
-def re_ima_path(path):
+def re_ima_path(url):
+  path = replace_domain(url, '')
   # 單篇 blog
   detail_reg = re.compile(r'.*detail/.*')
   list_reg = re.compile(r'.*MEMBER/list.*')
@@ -270,7 +289,7 @@ def re_link_path(path: str, level: int):
 
 
 # 移除連結 ima 參數, 取得檔案下載位置
-def re_link_path(path: str):
+def re_ima_set_folder_path(path: str):
   # 單篇 blog
   result = re_ima_path(path)
 
@@ -281,22 +300,35 @@ def re_link_path(path: str):
 
 # 下載 html, 返回未下載連結
 def download(url: str):
+
+
   # 移除 domain
   re_domain = replace_domain(url, '')
   # 移除 ima -> 檔案位置
-  # ./s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER
-  n_url = re_link_path(re_domain, 0)
+  # ./kubo/s/n46/diary/MEMBER/list?page=9&ct=36753&cd=MEMBER
+  n_url = re_ima_set_folder_path(re_domain)
 
   # 加附檔名
-  # /s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
+  # ./kubo/s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
   html_url = add_html(n_url)
+
+  other_domain = re.compile(r"^https")
+  if other_domain.match(re_domain):
+    return []
 
   # 加 domain
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
-  domain_url = add_domain(n_url)
+  domain_url = add_domain(re_domain)
   # 檔案在第幾層資料夾
   path_level: int = get_level(n_url)
-  response = requests.get(url=domain_url)
+  # headers = {
+  #   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
+  #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  #   'Cookie': '__utmc=174951741; _ga=GA1.2.506322615.1645072246; __td_signed=true; _ts_yjad=1645072246687; WAPID=XOYHQ5FIIfOu94E1O0LNfrQl3cB8hGKJMkd; wap_last_event=showWidgetPage; wovn_uuid=kle42u84z; wovn_selected_lang=ja; S5SI=8plt3b79g2ulu8evr6id44070conk929; __utmz=174951741.1653654036.14.8.utmcsr=dlvr.it|utmccn=(not%20set)|utmcmd=twitter; _gcl_au=1.1.692994152.1653654036; 9DD31CEFD6719ABA=248fe041c8c7de9b23633326713fdc8b4698d96b; __utma=174951741.506322615.1645072246.1656607496.1656832205.43; __utmt=1; __utmb=174951741.1.10.1656832205; _gid=GA1.2.299101591.1656832205; _td=4991f6ef-bf12-4aa5-a95b-315fd89d01e8'
+  # }
+  # request = urllib.request.Request(url=domain_url, headers=headers)
+  # response = urllib.request.urlopen(request)
+  response = requests.get(url=domain_url, )
   # 設定編碼格式
   response.encoding = 'UTF-8'
   origin_html = response.text
@@ -343,10 +375,14 @@ def download(url: str):
     for item in list:
       item['class'] = clazz + ' is-v'
 
+  # 等待下載清單: /s/n46/diary/detail/100091?ima=4435&cd=MEMBER
+  wait_download = []
+
   def set_new_link_and_wait_download(html_list: list):
     for html in html_list:
       # 下載新頁面
       link = html['href']
+      print('下載新頁面: ', link)
       wait_download.append(link)
       new_link = re_link_path(link, path_level)
       html_path = add_html(new_link)
@@ -363,6 +399,15 @@ def download(url: str):
   # 移除連結 ima 參數，加入下載清單，替換連結
   set_new_link_and_wait_download(blog_list)
 
+  # blog 標題
+  title_class = 'bd--hd__ttl f--head a--tx js-tdi'
+  title_list = get_class_list(title_class)
+  replace_class_by_list(title_class, title_list)
+
+  date_class = 'bd--hd__date a--tx js-tdi is-v'
+  date_list = get_class_list(date_class)
+  replace_class_by_list(date_class, date_list)
+
   # new entry blog
   new_entry = soup.select('.bd--ne__one__a.hv--op')
   set_new_link_and_wait_download(new_entry)
@@ -376,18 +421,14 @@ def download(url: str):
   footer_blog = soup.select('.m--pnv__a.m--fic.hv--op')
   set_new_link_and_wait_download(footer_blog)
   # 日曆 calender blog
-  calender_blog = soup.select('td a')
-  set_new_link_and_wait_download(calender_blog)
+  # calender_blog = soup.select('td a')
+  # set_new_link_and_wait_download(calender_blog)
   # 大頭相
   header = soup.select('.bd--prof__img.m--fic.hv--op')
   set_new_link_and_wait_download(header)
   # title
   title = soup.select('.m--allhd__ja__a.hv--op')
   set_new_link_and_wait_download(title)
-
-
-  # 等待下載清單: /s/n46/diary/detail/100091?ima=4435&cd=MEMBER
-  wait_download = []
 
   # 替換 dcimg 到 <img>
   a_link = soup.select('a')
@@ -397,7 +438,7 @@ def download(url: str):
     if reg.match(str(link)):
       # url: http://dcimg.awalker.jp/v/TBW3s78it3wcC9OXcPugfpOCfR0aALu1V5B3ezGQ5MwA1ybuj0iORLLQ7xNpv7IA724oeWQcEPcwA53gyeLTI5hrSzE38OBgpBt6yjiosCzY4rLAYqTxCnUGgzLvElzq7SzKn9QF3mmSaAWw8j5WKVStUZWdJJkkk0kLTmrW45fI4xJaACN9YlOWMTYdlPhSebpMo6gM
       # 連結失效跳過
-      if is_err_dcimg(link):
+      if is_err_dcimg(link['href']):
         link['href'] = ''
         continue
       url = link['href']
@@ -497,7 +538,7 @@ import all_url
 
 # 區分url
 def dis_urls(urls: list):
-  reg = re.compile('.*cd=MEMBER')
+  reg = re.compile('.*cd=MEMBER|.*ima=.*')
   html_url = []
   oth_url = []
   for url in urls:
