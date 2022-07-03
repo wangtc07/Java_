@@ -134,8 +134,8 @@ if __name__ == '__main__':
   # /s/n46/diary/MEMBER/list?ima=5606&ct=40005
   for i in range(0, 36):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=5606&page=' + str(
-            i) + '&ct=36753&cd=MEMBER')
+        '/s/n46/diary/MEMBER/list?ima=5702&page=' + str(
+            i) + '&ct=40005&cd=MEMBER')
 
   # 測試 blog
   # queue.put('https://www.nogizaka46.com/s/n46/diary/detail/56454?ima=3811&cd=MEMBER')
