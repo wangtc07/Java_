@@ -132,10 +132,11 @@ if __name__ == '__main__':
 
   # 測試 list
   # /s/n46/diary/MEMBER/list?ima=5606&ct=40005
-  for i in range(0, 36):
+  # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1610&ct=17381
+  for i in range(0, 63):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=5702&page=' + str(
-            i) + '&ct=40005&cd=MEMBER')
+        '/s/n46/diary/MEMBER/list?ima=1610&page=' + str(
+            i) + '&ct=17381&cd=MEMBER')
 
   # 測試 blog
   # queue.put('https://www.nogizaka46.com/s/n46/diary/detail/56454?ima=3811&cd=MEMBER')
