@@ -28,21 +28,21 @@ def get_photo_base64(src):
 
 
 def download(url):
+  # 替換 domain, 移除 https://www.nogizaka46.com -> /s/n46/diary/detail/100415?ima=2618
   re_domain = utils.replace_domain(url, '')
 
+  # 移除連結 ima 參數, 取得檔案下載位置, -> /s/n46/diary/detail/100415
   n_url = utils.re_ima_set_folder_path(re_domain)
 
+  # 加上 .html 副檔名 -> /s/n46/diary/detail/100415.html
   html_url = utils.add_html(n_url)
 
-  other_domain = re.compile(r"^https")
-  if other_domain.match(re_domain):
-    return []
-
   # 加 domain
-  # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?&page=0&ct=36753&cd=MEMBER.html
+  # https://www.nogizaka46.com/s/n46/diary/detail/100415?ima=2618
   domain_url = utils.add_domain(re_domain)
   # 檔案在第幾層資料夾
-  path_level: int = utils.get_level(n_url)
+  # path_level: int = utils.get_level(n_url)
+
   # headers = {
   #   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
   #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -50,9 +50,12 @@ def download(url):
   # }
   # request = urllib.request.Request(url=domain_url, headers=headers)
   # response = urllib.request.urlopen(request)
+
+  # 取得回應
   response = requests.get(url=domain_url, )
   # 設定編碼格式
   response.encoding = 'UTF-8'
+  # 取得 html
   origin_html = response.text
 
   soup = BeautifulSoup(origin_html, 'lxml')
@@ -61,32 +64,27 @@ def download(url):
   titles = soup.select('title')
   html_url = './' + titles[0].text + '.html'
 
-
-
   # 圖片
   # data-src="https://www.nogizaka46.com/images/46/445/60cae08cc551e45e9d8aa008f871c.jpg"
   # ->
   # style="background-image: url("https://www.nogizaka46.com/images/46/445/60cae08cc551e45e9d8aa008f871c.jpg");"
   data_src = soup.find_all(attrs={'data-src': True})
 
-  # for data in data_src:
-  #   # 取得 data-src 屬性
-  #   src: str = data['data-src']
-  #   # utils.download_path(src)
-  #   # 轉 base64
-  #   base64_data = get_photo_base64(src)
-  #   local_path = utils.replace_domain(src, utils.EMPTY)
-  #   local_path = utils.get_data_path(local_path, path_level)
-  #   style = 'background-image: url(' + base64_data + ');'
-  #   data['style'] = style
-  #
-  #   # 加上 is-l
-  #   class_list: list = data['class']
-  #   class_list.append('is-l')
-  #   new_class = ' '.join(class_list)
-  #   data['class'] = new_class
+  for data in data_src:
+    # 取得 data-src 屬性
+    src: str = data['data-src']
+    # utils.download_path(src)
+    # 轉 base64
+    base64_data = get_photo_base64(src)
 
+    style = 'background-image: url(' + base64_data + ');'
+    data['style'] = style
 
+    # 加上 is-l
+    class_list: list = data['class']
+    class_list.append('is-l')
+    new_class = ' '.join(class_list)
+    data['class'] = new_class
 
   #
   # # 取得所有 class
@@ -236,12 +234,13 @@ def download(url):
   # #     <script src="/files/46/assets/js/app2.js" defer></script>
   js = soup.find_all('script', src=True)
 
-  def download_replace_same(path: str, attr: str, label):
-    # download_path(path)
-    # wait_download.append(path)
-    attr_path = utils.get_data_path(path, path_level)
-    label[attr] = attr_path
+  # def download_replace_same(path: str, attr: str, label):
+  # download_path(path)
+  # wait_download.append(path)
+  # attr_path = utils.get_data_path(path, path_level)
+  # label[attr] = attr_path
 
+  # 取得 js css 檔案
   for j in js:
     # 取得網址
     path = j['src']
@@ -250,6 +249,8 @@ def download(url):
       print(path)
       vndr = open('./help/vndr2.js', encoding='UTF-8')
       j.string = vndr.read()
+      # src 標籤清除
+      j['src'] = ''
     # download_replace_same(path, 'src', j)
   # # css
   # # <link rel="preload" href="/files/46/assets/fonts/icons.woff2" as="font" type="font/woff2" crossorigin>
@@ -258,6 +259,8 @@ def download(url):
                             attrs={
                               "rel": ["preload", "apple-touch-icon", "icon",
                                       "manifest", "mask-icon"]})
+
+  # TODO 創建 style 標籤
   for link in link_list:
     path = link['href']
     reg = re.compile(r'.*style2.*')
