@@ -89,19 +89,19 @@ def download(url):
   #
   # # 取得所有 class
   # # clazz: bl--card js-pos a--op hv--thumb
-  # def get_class_list(clazz):
-  #   clazz_finder = '.' + re.sub(r" ", '.', clazz)
-  #   list = soup.select(clazz_finder)
-  #   return list
+  def get_class_list(clazz):
+    clazz_finder = '.' + re.sub(r" ", '.', clazz)
+    list = soup.select(clazz_finder)
+    return list
   #
-  # def replace_class(clazz: str):
-  #   list = get_class_list(clazz)
-  #   for item in list:
-  #     item['class'] = clazz + ' is-v'
+  def replace_class(clazz: str):
+    list = get_class_list(clazz)
+    for item in list:
+      item['class'] = clazz + ' is-v'
   #
-  # def replace_class_by_list(clazz, list):
-  #   for item in list:
-  #     item['class'] = clazz + ' is-v'
+  def replace_class_by_list(clazz, list):
+    for item in list:
+      item['class'] = clazz + ' is-v'
   #
   # # 等待下載清單: /s/n46/diary/detail/100091?ima=4435&cd=MEMBER
   # wait_download = []
@@ -127,13 +127,13 @@ def download(url):
   # # 移除連結 ima 參數，加入下載清單，替換連結
   # set_new_link_and_wait_download(blog_list)
   #
-  # # blog 標題
-  # title_class = 'bd--hd__ttl f--head a--tx js-tdi'
-  # title_list = get_class_list(title_class)
-  # replace_class_by_list(title_class, title_list)
+  # blog 標題
+  title_class = 'bd--hd__data js-pos js-tdg'
+  title_list = get_class_list(title_class)
+  replace_class_by_list(title_class, title_list)
   #
-  # date_class = 'bd--hd__date a--tx js-tdi is-v'
-  # date_list = get_class_list(date_class)
+  # date_class = 'bd--hd__date a--tx js-tdi'
+  # date_list = utils.get_class_list(date_class)
   # replace_class_by_list(date_class, date_list)
   #
   # # new entry blog
@@ -176,32 +176,34 @@ def download(url):
   #     l_path = utils.get_data_path(path, path_level)
   #     dc_img_paths.append(l_path)
   #     link['href'] = l_path
+
+  # img
+  # src="/images/46/ac5/8b0421d858a5cc0abe8d40ba31903.jpg"
+  imgs = soup.select('img')
+  i = 0
+  for img in imgs:
+    reg = re.compile('.*src.*')
+    if reg.match(str(img)):
+      img_url = img['src']
+      # 轉 base64
+      base64_data = get_photo_base64(img_url)
+      # wait_download.append(img_url)
+      # new_link = utils.get_data_path(img_url, path_level)
+      # l_path = dc_img_paths[i]
+      img['src'] = base64_data
+      i = i + 1
   #
-  # # img
-  # # src="/images/46/ac5/8b0421d858a5cc0abe8d40ba31903.jpg"
-  # imgs = soup.select('img')
-  # i = 0
-  # for img in imgs:
-  #   reg = re.compile('.*src.*')
-  #   if reg.match(str(img)):
-  #     img_url = img['src']
-  #     wait_download.append(img_url)
-  #     new_link = utils.get_data_path(img_url, path_level)
-  #     # l_path = dc_img_paths[i]
-  #     img['src'] = new_link
-  #     i = i + 1
-  #
-  # # 顯示
-  # # blog 標題
-  # # class="m--allhd js-pos js-tdg is-v"
-  # # footer
-  # # class="b--ft__nv js-pos js-tdg is-v"
-  # # class="b--ft__sns js-pos js-tdg is-v"
-  # # class="b--ft__sub js-pos js-tdg is-v"
-  # replace_class('m--allhd js-pos js-tdg')
-  # replace_class('b--ft__nv js-pos js-tdg')
-  # replace_class('b--ft__sns js-pos js-tdg')
-  # replace_class('b--ft__sub js-pos js-tdg')
+  # 顯示
+  # blog 標題
+  # class="m--allhd js-pos js-tdg is-v"
+  # footer
+  # class="b--ft__nv js-pos js-tdg is-v"
+  # class="b--ft__sns js-pos js-tdg is-v"
+  # class="b--ft__sub js-pos js-tdg is-v"
+  replace_class('m--allhd js-pos js-tdg')
+  replace_class('b--ft__nv js-pos js-tdg')
+  replace_class('b--ft__sns js-pos js-tdg')
+  replace_class('b--ft__sub js-pos js-tdg')
   # # 大頭 right
   # # class="bd--prof js-pos a--op is-v"
   # replace_class('bd--prof js-pos a--op')
@@ -260,15 +262,14 @@ def download(url):
                               "rel": ["preload", "apple-touch-icon", "icon",
                                       "manifest", "mask-icon"]})
 
-  # TODO 創建 style 標籤
-  for link in link_list:
-    path = link['href']
-    reg = re.compile(r'.*style2.*')
-    if reg.match(path):
-      print(path)
-      css = open('./help/style2.css', encoding='UTF-8')
-      link.string = css.read()
-    # download_replace_same(path, 'href', link)
+  # 創建 style 標籤
+  css = open('./help/style2.css', encoding='UTF-8')
+
+  style_tag = soup.new_tag('style')
+  style_tag.string = css.read()
+  # Appending new style to html tree
+  soup.html.body.append(style_tag)
+
   #
   # # 儲存 html
   print(html_url)
@@ -278,6 +279,6 @@ def download(url):
 
 
 if __name__ == '__main__':
-  url: str = 'https://www.nogizaka46.com/s/n46/diary/detail/100415?ima=2618'
+  url: str = 'https://www.nogizaka46.com/s/n46/diary/detail/56029?ima=5130&cd=MEMBER'
 
   download(url)
