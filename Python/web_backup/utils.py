@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
-ROOT_FOLDER = './zaki'
+ROOT_FOLDER = './mizuki'
 ROOT_PATH = '.'
 EMPTY = ''
 DOMAIN = 'https://www.nogizaka46.com/'

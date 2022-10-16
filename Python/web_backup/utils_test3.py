@@ -1,7 +1,7 @@
 import utils
 import re
 from queue import Queue
-import test002
+import member_backup
 
 i = 1
 url = '/s/n46/diary/MEMBER/list?ima=3233&page=' + str(

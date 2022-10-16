@@ -6,6 +6,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 import urllib.request
+import setFileDate
 
 
 def get_base64(url: str):
@@ -60,9 +61,31 @@ def download(url):
 
   soup = BeautifulSoup(origin_html, 'lxml')
 
+  #
+  # # 取得所有 class
+  # # clazz: bl--card js-pos a--op hv--thumb
+  def get_class_list(clazz):
+    clazz_finder = '.' + re.sub(r" ", '.', clazz)
+    list = soup.select(clazz_finder)
+    return list
+  #
+  def replace_class(clazz: str):
+    list = get_class_list(clazz)
+    for item in list:
+      item['class'] = clazz + ' is-v'
+  #
+  def replace_class_by_list(clazz, list):
+    for item in list:
+      item['class'] = clazz + ' is-v'
+
   # 檔名及路徑
   titles = soup.select('title')
-  html_url = './' + titles[0].text + '.html'
+  # 日期
+  date_class = 'bd--hd__date a--tx js-tdi'
+  date_list = get_class_list(date_class)
+  date_str = date_list[0].text
+
+  html_url = './' + date_str + ' ' + titles[0].text + '.html'
 
   # 圖片
   # data-src="https://www.nogizaka46.com/images/46/445/60cae08cc551e45e9d8aa008f871c.jpg"
@@ -86,22 +109,7 @@ def download(url):
     new_class = ' '.join(class_list)
     data['class'] = new_class
 
-  #
-  # # 取得所有 class
-  # # clazz: bl--card js-pos a--op hv--thumb
-  def get_class_list(clazz):
-    clazz_finder = '.' + re.sub(r" ", '.', clazz)
-    list = soup.select(clazz_finder)
-    return list
-  #
-  def replace_class(clazz: str):
-    list = get_class_list(clazz)
-    for item in list:
-      item['class'] = clazz + ' is-v'
-  #
-  def replace_class_by_list(clazz, list):
-    for item in list:
-      item['class'] = clazz + ' is-v'
+
   #
   # # 等待下載清單: /s/n46/diary/detail/100091?ima=4435&cd=MEMBER
   # wait_download = []
@@ -274,11 +282,14 @@ def download(url):
   # # 儲存 html
   print(html_url)
   utils.download_html(html_url, soup.prettify())
+
+  # 修改日期
+  setFileDate.modify_file_time(html_url, date_str)
   #
   # return wait_download
 
 
 if __name__ == '__main__':
-  url: str = 'https://www.nogizaka46.com/s/n46/diary/detail/56029?ima=5130&cd=MEMBER'
+  url: str = 'https://www.nogizaka46.com/s/n46/diary/detail/100780?ima=2216'
 
   download(url)
