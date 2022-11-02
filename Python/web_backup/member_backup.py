@@ -8,9 +8,12 @@ from queue import Queue
 from threading import Thread
 import utils
 
-
-def run(index, wait_html_urls: Queue, out_downloaded_urls: Queue,
-    out_other_urls: Queue):
+### 下載 html
+# index 第幾線程
+# wait_html_urls 要下載的 url
+# out_downloaded_urls 已下載過的 rul
+# out_other_urls 要下載的 資源 url
+def run(index, wait_html_urls: Queue, out_downloaded_urls: Queue, out_other_urls: Queue):
   # print(index, '----------')
   test = 1
   while wait_html_urls.empty() is not True:
@@ -110,7 +113,7 @@ if __name__ == '__main__':
   queue = Queue()
   # 下載完的 url
   downloaded_queue = Queue()
-  # 要下載的 other url
+  # 要下載的 資源 url
   other_urls = Queue()
   # 下載錯誤 url
   error_urls = Queue()
@@ -134,14 +137,15 @@ if __name__ == '__main__':
   # /s/n46/diary/MEMBER/list?ima=5606&ct=40005
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1610&ct=17381
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=4305&page=1&ct=36758&cd=MEMBER
+  # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1233&page=0&ct=277&cd=MEMBER  樋口
   # TODO
   #   <div class="b--ld" id="js-ld">
   #   </div>
   # 會有這個標籤擋在最上方
-  for i in range(0, 8):
+  for i in range(77):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=4305&page=' + str(
-            i) + '&ct=36758&cd=MEMBER')
+        '/s/n46/diary/MEMBER/list?ima=1233&page=' + str(
+            i) + '&ct=277&cd=MEMBER')
 
   # 測試 blog
   # queue.put('https://www.nogizaka46.com/s/n46/diary/detail/56454?ima=3811&cd=MEMBER')

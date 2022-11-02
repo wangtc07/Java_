@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
-ROOT_FOLDER = './mizuki'
+ROOT_FOLDER = './higuchi'
 ROOT_PATH = '.'
 EMPTY = ''
 DOMAIN = 'https://www.nogizaka46.com/'
@@ -429,6 +429,10 @@ def download(url: str):
   # title
   title = soup.select('.m--allhd__ja__a.hv--op')
   set_new_link_and_wait_download(title)
+
+  # js_new_ver <div class="b--ld" id="js-ld"> 擋住
+  blds = soup.select('.b--ld')
+  blds[0] = blds[0].decompose()
 
   # 替換 dcimg 到 <img>
   a_link = soup.select('a')
