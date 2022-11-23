@@ -185,6 +185,10 @@ def download(url):
   #     dc_img_paths.append(l_path)
   #     link['href'] = l_path
 
+  # js_new_ver <div class="b--ld" id="js-ld"> 擋住
+  blds = soup.select('.b--ld')
+  blds[0] = blds[0].decompose()
+
   # img
   # src="/images/46/ac5/8b0421d858a5cc0abe8d40ba31903.jpg"
   imgs = soup.select('img')
@@ -257,7 +261,7 @@ def download(url):
     reg = re.compile(r'.*vndr.*')
     if reg.match(path):
       print(path)
-      vndr = open('./help/vndr2.js', encoding='UTF-8')
+      vndr = open('./help/vndr.js', encoding='UTF-8')
       j.string = vndr.read()
       # src 標籤清除
       j['src'] = ''
@@ -291,5 +295,6 @@ def download(url):
 
 if __name__ == '__main__':
   url: str = 'https://www.nogizaka46.com/s/n46/diary/detail/100780?ima=2216'
+  url = 'https://www.nogizaka46.com/s/n46/diary/detail/100829?ima=3110'
 
   download(url)
