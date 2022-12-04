@@ -138,14 +138,15 @@ if __name__ == '__main__':
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1610&ct=17381
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=4305&page=1&ct=36758&cd=MEMBER
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1233&page=0&ct=277&cd=MEMBER  樋口
+  # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=4610&page=0&ct=284&cd=MEMBER  和田
   # TODO
   #   <div class="b--ld" id="js-ld">
   #   </div>
   # 會有這個標籤擋在最上方
-  for i in range(77):
+  for i in range(50):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=1233&page=' + str(
-            i) + '&ct=277&cd=MEMBER')
+        '/s/n46/diary/MEMBER/list?ima=4610&page=' + str(
+            i) + '&ct=284&cd=MEMBER')
 
   # 測試 blog
   # queue.put('https://www.nogizaka46.com/s/n46/diary/detail/56454?ima=3811&cd=MEMBER')
