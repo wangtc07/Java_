@@ -94,6 +94,9 @@ def download_oth(out_other_urls: Queue, error_urls: Queue, ed_urls: Queue):
     if utils.is_dc_page(url):
       path = utils.get_dc_path(url)
       try:
+        print('------------------------')
+        print(url)
+        print('------------------------')
         utils.download_dcimg(path, url)
       except:
         error_urls.put(url)
@@ -127,6 +130,7 @@ if __name__ == '__main__':
   # # 下載錯誤 url
   # error_urls = multiprocessing.Manager().Queue()
 
+  # 已下載的url
   downloaded = open(download_log, encoding='UTF-8')
   text_list = downloaded.read().split('\n')
   for url in text_list:
@@ -139,14 +143,15 @@ if __name__ == '__main__':
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=4305&page=1&ct=36758&cd=MEMBER
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=1233&page=0&ct=277&cd=MEMBER  樋口
   # https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ima=4610&page=0&ct=284&cd=MEMBER  和田
-  # TODO
+  # /s/n46/diary/MEMBER/list?ima=4653&page=1&ct=264&cd=MEMBER 飛鳥
+
   #   <div class="b--ld" id="js-ld">
   #   </div>
   # 會有這個標籤擋在最上方
-  for i in range(50):
+  for i in range(34):
     queue.put(
-        '/s/n46/diary/MEMBER/list?ima=4610&page=' + str(
-            i) + '&ct=284&cd=MEMBER')
+        '/s/n46/diary/MEMBER/list?ima=4653&page=' + str(
+            i) + '&ct=264&cd=MEMBER')
 
   # 測試 blog
   # queue.put('https://www.nogizaka46.com/s/n46/diary/detail/56454?ima=3811&cd=MEMBER')

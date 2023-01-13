@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
-ROOT_FOLDER = './wada'
+ROOT_FOLDER = './asuka'
 ROOT_PATH = '.'
 EMPTY = ''
 DOMAIN = 'https://www.nogizaka46.com/'
@@ -211,17 +211,19 @@ def download_dcimg(path, url):
   # http://dcimg.awalker.jp/img1.php?id=nVUBq7MT2ntqBgwlHX6nRbrRMeYVutr4K5nCGIuO4vv9JhSeslEV9A8m4PN1T7bFulHJ7eaZs2GEpjeZp7dTnIfWrl1I8tUn9AHoHIQR0mZAUHj9QTn4Y4Ha7ZvTZOpTKdsdhY3PC3934rIXoaGfYB3GVnfrLNnbH7zfyxMjxoM3MsGIKpWbbYy7XbIvBNXUP0xGBlI6
   # 失效頁面跳過
   if is_err_dcimg(url):
+    print('error deimg: ', url)
     return
   browser = ChormeUtils.share_browser()
   print('url', url)
   browser.get(url)
   cook = browser.get_cookie('PHPSESSID')
   print(cook)
-  cookies = 't7595i2frp13as6shjqi032ft2'
+  cookies = 'ehlkqpc8rd4vs29b166e9t9qd3'
   try:
     cookies = cook['value']
+    print('cookies: ', cookies)
   except:
-    cookies = 't7595i2frp13as6shjqi032ft2'
+    cookies = 'ehlkqpc8rd4vs29b166e9t9qd3'
 
   headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',

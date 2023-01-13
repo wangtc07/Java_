@@ -7,28 +7,11 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 
+# http://dcimg.awalker.jp/img1.php?id=nVUBq7MT2ntqBgwlHX6nRbrRMeYVutr4K5nCGIuO4vv9JhSeslEV9A8m4PN1T7bFulHJ7eaZs2GEpjeZp7dTnIfWrl1I8tUn9AHoHIQR0mZAUHj9QTn4Y4Ha7ZvTZOpTKdsdhY3PC3934rIXoaGfYB3GVnfrLNnbH7zfyxMjxoM3MsGIKpWbbYy7XbIvBNXUP0xGBlI6
+# http://dcimg.awalker.jp/i/HLq5KFoTQ5uH5zlXr52sfdmriDj2gBP1eFKIiiOlcseL24MBzFKAnNPTINbwNEH86QBi2dubQO4bs9ZoCjlOWeGfRQt4MreYlitCTCJcTIrFQalOHVrqRwynLSTXMHT1iRdTCAFqtW2m11M79P6aJmSbHrdGYlOqvCbInZUVoMVvksufeEmnxdqsXydpRaCDrSh40JLW
 
-url = 'https://www.youtube.com/watch?v=V9D5rbLyIsM'
+if __name__ == '__main__':
+    url = 'http://dcimg.awalker.jp/v/HLq5KFoTQ5uH5zlXr52sfdmriDj2gBP1eFKIiiOlcseL24MBzFKAnNPTINbwNEH86QBi2dubQO4bs9ZoCjlOWeGfRQt4MreYlitCTCJcTIrFQalOHVrqRwynLSTXMHT1iRdTCAFqtW2m11M79P6aJmSbHrdGYlOqvCbInZUVoMVvksufeEmnxdqsXydpRaCDrSh40JLW'
 
-
-# re_domain = utils.replace_domain(url, '')
-#
-# n_url = utils.re_ima_set_folder_path(re_domain)
-# print(n_url)
-#
-# other_domain = re.compile(r"^https")
-# if other_domain.match(re_domain):
-#   print(url)
-
-url = 'https://www.nogizaka46.com/files/46/diary/n46/MEMBER/moblog/202207/mobsGY7rt.jpg'
-
-response = requests.get(url)
-
-content = response.content
-# print(content)
-data = str(base64.b64encode(content), "utf-8")
-print(data)
-
-# 轉換base64後加上前綴
-data = 'data:image/jpeg;base64,' + data
-
+    path = utils.get_dc_path(url)
+    utils.download_dcimg(path, url)
