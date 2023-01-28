@@ -43,6 +43,18 @@ def get_src(html):
     return html['src']
 
 
+def filter_jpg(src):
+    gif_reg = re.compile(r".*\.gif")
+    if gif_reg.match(src):
+        return False
+
+    return True
+
+
+def get_href(html):
+    return html['href']
+
+
 def download_img(cur_url, path: str):
     print('download img: ', cur_url)
     # get soup
@@ -51,7 +63,14 @@ def download_img(cur_url, path: str):
     # get img link
     img_htmls = soup.select('img')
     src_list = map(get_src, img_htmls)
+    src_list = list(filter(filter_jpg, src_list))
     print('src list: ', src_list)
+
+    # get dcimg
+    a_link = soup.select('a')
+    href_list = map(get_href, a_link)
+    # filter error link
+    dcimg_list = filter(web_utils.filter_err_dcimg, href_list)
 
     # get member name
     names = web_utils.get_class_list('bd--prof__name f--head', soup)
@@ -62,7 +81,7 @@ def download_img(cur_url, path: str):
     date = dates[0].get_text()
 
     # get date
-    web_utils.download_blog_imgs(src_list, path, name, date)
+    web_utils.download_blog_imgs(src_list, dcimg_list, path, name, date)
 
     # download img
     # modify photo create day
@@ -103,7 +122,7 @@ def run(wait_url: Queue, downloaded: Queue, path: str):
 
 
 if __name__ == '__main__':
-    # floder path
+    # folder path
     path = './temp-photo'
     # 要下載的 url
     queue = Queue()
@@ -111,14 +130,14 @@ if __name__ == '__main__':
     downloaded_queue = Queue()
 
     # blog list
-    pages = 62
-    base_url = '/s/n46/diary/MEMBER/list?ima=4610&page='
-    member_url = '&ct=7639&cd=MEMBER'
+    pages = 34
+    base_url = '/s/n46/diary/MEMBER/list?ima=4653&page='
+    member_url = '&ct=264&cd=MEMBER'
     for i in range(pages):
         queue.put(base_url + str(i) + member_url)
 
     threads = []
-    for i in range(1):
+    for i in range(10):
         thread = Thread(target=run,
                         args=(queue, downloaded_queue, path))
         thread.daemon = True  # 隨主線程退出而退出

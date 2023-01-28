@@ -86,7 +86,7 @@ dcimg_i = 'http://dcimg.awalker.jp/i/TBW3s78it3wcC9OXcPugfpOCfR0aALu1V5B3ezGQ5Mw
 
 path = './i/TBW3s78it3wcC9OXcPugfpOCfR0aALu1V5B3ezGQ5MwA1ybuj0iORLLQ7xNpv7IA724oeWQcEPcwA53gyeLTI5hrSzE38OBgpBt6yjiosCzY4rLAYqTxCnUGgzLvElzq7SzKn9QF3mmSaAWw8j5WKVStUZWdJJkkk0kLTmrW45fI4xJaACN9YlOWMTYdlPhSebpMo6gM.png'
 
-import ChormeUtils
+import chorme_utils
 from selenium.webdriver.common.by import By
 
 '''
