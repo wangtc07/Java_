@@ -39,3 +39,4 @@ build/
 .DS_Store
 Python/.idea
 Python/web_backup/blog_photo
+Chrome/test-project/node_modules

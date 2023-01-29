@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Hollo World",
+  "version": "1.0",
+  "icons": {
+    "128": "icon128.png",
+    "48": "icon48.png",
+    "16": "icon16.png"
+  },
+  "action": {
+    "default_icon": "icon16.png",
+    "deflaut_popup": "popup.html "
+  }
+}
