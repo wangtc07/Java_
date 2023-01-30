@@ -28,11 +28,14 @@ import "./popup.css";
       }
 
       axios
-        .request("http://127.0.0.1:5000/blog_single/photo", {
-          method: "GET",
-          params: body,
-          responseType: "blob", // important
-        })
+        .request(
+          "https://linen-striker-376306.de.r.appspot.com/blog_single/photo",
+          {
+            method: "GET",
+            params: body,
+            responseType: "blob", // important
+          }
+        )
         .then(function (response) {
           console.log(response);
           const url = window.URL.createObjectURL(new Blob([response.data]));
