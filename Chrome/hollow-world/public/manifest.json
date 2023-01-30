@@ -2,7 +2,6 @@
   "manifest_version": 3,
   "name": "Test Project",
   "version": "0.1.0",
-  "description": "My Chrome Extension",
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",
@@ -10,21 +9,11 @@
     "128": "icons/icon_128.png"
   },
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "background.js"
   },
   "action": {
     "default_title": "Test Project",
     "default_popup": "popup.html"
   },
-  "permissions": ["storage"],
-  "externally_connectable": {
-    "matches": ["*://*.google.com/*"]
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "run_at": "document_idle",
-      "js": ["contentScript.js"]
-    }
-  ]
+  "permissions": ["tabs"]
 }
