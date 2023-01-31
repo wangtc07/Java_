@@ -1,3 +1,3 @@
-class all_url:
+class allUrl:
   html: list
   oth: list

@@ -214,7 +214,7 @@ def download_dcimg(path, url):
     if is_err_dcimg(url):
         print('error deimg: ', url)
         return
-    browser = ChormeUtils.share_browser()
+    browser = chorme_utils.share_browser()
     print('url', url)
     browser.get(url)
     cook = browser.get_cookie('PHPSESSID')
@@ -538,7 +538,7 @@ def download(url: str):
     return wait_download
 
 
-import all_url
+import type
 
 
 # 區分url
@@ -551,7 +551,7 @@ def dis_urls(urls: list):
             html_url.append(url)
         else:
             oth_url.append(url)
-    u = all_url.all_url()
+    u = type.allUrl()
     u.html = html_url
     u.oth = oth_url
     return u
